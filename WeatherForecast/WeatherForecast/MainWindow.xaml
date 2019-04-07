@@ -15,7 +15,7 @@
         <DataTemplate x:Key="AutoCompleteBoxItemTemplate">
             <StackPanel Orientation="Horizontal">
                 <Label Content="{Binding name}"
-                       Width="100" />
+                        />
                 <Label Content="{Binding country}"
                        FontStyle="Italic"
                        Foreground="DarkGray" />
@@ -39,8 +39,10 @@
             ItemsSource="{Binding Cities}"
             SelectedItem="{Binding SelectedCity, Mode=TwoWay}" 
             ValueMemberPath="name"
+            FontSize="20"
+            VerticalAlignment="Center"
+
             ItemFilter="{Binding CityFilter}"
-            IsTextCompletionEnabled="True"
             ItemTemplate="{StaticResource AutoCompleteBoxItemTemplate}"
             x:Name="Search" KeyUp="keyUpSearch" SelectionChanged="selectChangedSearch"
             />

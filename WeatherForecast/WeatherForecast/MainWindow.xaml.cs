@@ -39,7 +39,7 @@ namespace WeatherForecast
             if (loader.SelectedCity != null)
             {
                 loader.changeCity();
-                Search.Text = "";
+             
             }
         }
 
@@ -50,7 +50,6 @@ namespace WeatherForecast
             this.Width = (System.Windows.SystemParameters.PrimaryScreenWidth * 0.7);
             loader.refreshWeatherData("64013");
             loader.readCitiesFromJson();
-            Console.WriteLine(loader.Cities.Count());
             this.DataContext = loader;
            
 
