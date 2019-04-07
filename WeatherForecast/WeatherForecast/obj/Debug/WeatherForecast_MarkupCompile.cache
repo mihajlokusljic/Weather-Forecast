@@ -4,17 +4,17 @@
 winexe
 C#
 .cs
-C:\Users\kusljic\source\repos\WeatherForecast\WeatherForecast\obj\Debug\
+C:\Users\kusljic\Documents\HCI WS\Projekat1\Weather-Forecast\WeatherForecast\WeatherForecast\obj\Debug\
 WeatherForecast
 none
 false
 DEBUG;TRACE
-C:\Users\kusljic\source\repos\WeatherForecast\WeatherForecast\App.xaml
-11151548125
+C:\Users\kusljic\Documents\HCI WS\Projekat1\Weather-Forecast\WeatherForecast\WeatherForecast\App.xaml
+3612325823
 
-71511376825
-151592906038
-MainWindow.xaml;
+91790597425
+17-68385952
+CurrentWeatherInfo.xaml;DayWeatherSummary.xaml;MainWindow.xaml;
 
 False
 

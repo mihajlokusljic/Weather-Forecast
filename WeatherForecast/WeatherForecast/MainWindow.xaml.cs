@@ -30,9 +30,11 @@ namespace WeatherForecast
         public MainWindow()
         {
             InitializeComponent();
+            this.Height = (System.Windows.SystemParameters.PrimaryScreenHeight * 0.7);
+            this.Width = (System.Windows.SystemParameters.PrimaryScreenWidth * 0.7);
             WeatherDataLoader loader = new WeatherDataLoader();
             loader.refreshWeatherData("64013");
-            this.DataContext = loader.Weather.city;
+            this.DataContext = loader;
 
         }
 

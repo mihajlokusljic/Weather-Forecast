@@ -1,0 +1,25 @@
+﻿<UserControl x:Class="WeatherForecast.CurrentWeatherInfo"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:WeatherForecast"
+             mc:Ignorable="d" 
+             d:DesignHeight="300" d:DesignWidth="300">
+    <StackPanel Orientation="Vertical" Background="Transparent">
+        <Label Content="{Binding Path=Weather.city.Name, UpdateSourceTrigger=PropertyChanged}" Foreground="White" HorizontalAlignment="Center" FontSize="36"/>
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="1.2*"/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+            <Image Source="resources/images/Rain.png" Width="80" Height="80" Margin="10" Grid.Row="0" Grid.Column="0"/>
+            <Label Foreground="White" FontSize="48" VerticalAlignment="Bottom" Grid.Row="0" Grid.Column="1">-XY °C</Label>
+        </Grid>
+        
+        <Label Foreground="White" HorizontalAlignment="Center" FontSize="18">Currently: Some description</Label>
+    </StackPanel>
+</UserControl>
