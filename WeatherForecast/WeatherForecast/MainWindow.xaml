@@ -58,7 +58,7 @@
         </Viewbox>
 
         <Viewbox Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="3">
-            <Grid x:Name="Root">
+            <Grid>
                 <Grid.RowDefinitions>
                     <RowDefinition/>
                 </Grid.RowDefinitions>

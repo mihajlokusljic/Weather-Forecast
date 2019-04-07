@@ -59,7 +59,7 @@ namespace WeatherForecast.utilities
                 return await httpClient.GetStringAsync("http://api.openweathermap.org/data/2.5/forecast?id=" +
                     cityIdentifier + "&units=metric&appid=53945fd3404ab75b8b8c7e076d3cd32f").ConfigureAwait(false); ;
             }
-            catch(Exception e)
+            catch (Exception)
             {
                 return "{}";
             }
@@ -142,11 +142,7 @@ namespace WeatherForecast.utilities
             URLI = @"http://api.openweathermap.org/data/2.5/forecast?id=" + SelectedCity.id +
                 "&APPID=53945fd3404ab75b8b8c7e076d3cd32f";
             refreshWeatherData(SelectedCity.id.ToString());
-
-            for (int i = 0; i < Weather.list.Count(); i++)
-            {
-                OnPropertyChanged("Weather");
-            }
+            OnPropertyChanged("Weather");
         }
 
     }

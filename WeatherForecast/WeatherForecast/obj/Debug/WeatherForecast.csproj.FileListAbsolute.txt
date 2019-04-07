@@ -48,16 +48,13 @@ C:\Users\Vaso\Desktop\Fakultet\Interakcija_Covjek_Racunar\Weather-Forecast\Weath
 C:\Users\Vaso\Desktop\Fakultet\Interakcija_Covjek_Racunar\Weather-Forecast\WeatherForecast\WeatherForecast\bin\Debug\System.Net.Http.Formatting.dll
 C:\Users\Vaso\Desktop\Fakultet\Interakcija_Covjek_Racunar\Weather-Forecast\WeatherForecast\WeatherForecast\bin\Debug\Newtonsoft.Json.xml
 C:\Users\Vaso\Desktop\Fakultet\Interakcija_Covjek_Racunar\Weather-Forecast\WeatherForecast\WeatherForecast\bin\Debug\System.Net.Http.Formatting.xml
-C:\Users\Vaso\Desktop\Fakultet\Interakcija_Covjek_Racunar\Weather-Forecast\WeatherForecast\WeatherForecast\obj\Debug\WeatherForecast.csprojAssemblyReference.cache
 C:\Users\Vaso\Desktop\Fakultet\Interakcija_Covjek_Racunar\Weather-Forecast\WeatherForecast\WeatherForecast\obj\Debug\CurrentWeatherInfo.g.cs
-C:\Users\Vaso\Desktop\Fakultet\Interakcija_Covjek_Racunar\Weather-Forecast\WeatherForecast\WeatherForecast\obj\Debug\DayWeatherSummary.g.cs
 C:\Users\Vaso\Desktop\Fakultet\Interakcija_Covjek_Racunar\Weather-Forecast\WeatherForecast\WeatherForecast\obj\Debug\MainWindow.g.cs
 C:\Users\Vaso\Desktop\Fakultet\Interakcija_Covjek_Racunar\Weather-Forecast\WeatherForecast\WeatherForecast\obj\Debug\App.g.cs
 C:\Users\Vaso\Desktop\Fakultet\Interakcija_Covjek_Racunar\Weather-Forecast\WeatherForecast\WeatherForecast\obj\Debug\GeneratedInternalTypeHelper.g.cs
 C:\Users\Vaso\Desktop\Fakultet\Interakcija_Covjek_Racunar\Weather-Forecast\WeatherForecast\WeatherForecast\obj\Debug\WeatherForecast_MarkupCompile.cache
 C:\Users\Vaso\Desktop\Fakultet\Interakcija_Covjek_Racunar\Weather-Forecast\WeatherForecast\WeatherForecast\obj\Debug\WeatherForecast_MarkupCompile.lref
 C:\Users\Vaso\Desktop\Fakultet\Interakcija_Covjek_Racunar\Weather-Forecast\WeatherForecast\WeatherForecast\obj\Debug\CurrentWeatherInfo.baml
-C:\Users\Vaso\Desktop\Fakultet\Interakcija_Covjek_Racunar\Weather-Forecast\WeatherForecast\WeatherForecast\obj\Debug\DayWeatherSummary.baml
 C:\Users\Vaso\Desktop\Fakultet\Interakcija_Covjek_Racunar\Weather-Forecast\WeatherForecast\WeatherForecast\obj\Debug\MainWindow.baml
 C:\Users\Vaso\Desktop\Fakultet\Interakcija_Covjek_Racunar\Weather-Forecast\WeatherForecast\WeatherForecast\obj\Debug\WeatherForecast.g.resources
 C:\Users\Vaso\Desktop\Fakultet\Interakcija_Covjek_Racunar\Weather-Forecast\WeatherForecast\WeatherForecast\obj\Debug\WeatherForecast.Properties.Resources.resources
@@ -66,3 +63,6 @@ C:\Users\Vaso\Desktop\Fakultet\Interakcija_Covjek_Racunar\Weather-Forecast\Weath
 C:\Users\Vaso\Desktop\Fakultet\Interakcija_Covjek_Racunar\Weather-Forecast\WeatherForecast\WeatherForecast\obj\Debug\WeatherForecast.csproj.CopyComplete
 C:\Users\Vaso\Desktop\Fakultet\Interakcija_Covjek_Racunar\Weather-Forecast\WeatherForecast\WeatherForecast\obj\Debug\WeatherForecast.exe
 C:\Users\Vaso\Desktop\Fakultet\Interakcija_Covjek_Racunar\Weather-Forecast\WeatherForecast\WeatherForecast\obj\Debug\WeatherForecast.pdb
+C:\Users\Vaso\Desktop\Fakultet\Interakcija_Covjek_Racunar\Weather-Forecast\WeatherForecast\WeatherForecast\bin\Debug\System.Windows.Controls.Input.Toolkit.dll
+C:\Users\Vaso\Desktop\Fakultet\Interakcija_Covjek_Racunar\Weather-Forecast\WeatherForecast\WeatherForecast\bin\Debug\System.Windows.Controls.Layout.Toolkit.dll
+C:\Users\Vaso\Desktop\Fakultet\Interakcija_Covjek_Racunar\Weather-Forecast\WeatherForecast\WeatherForecast\bin\Debug\WPFToolkit.dll

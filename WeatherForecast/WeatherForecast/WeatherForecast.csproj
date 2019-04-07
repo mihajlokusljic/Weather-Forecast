@@ -75,16 +75,9 @@
     <Compile Include="CurrentWeatherInfo.xaml.cs">
       <DependentUpon>CurrentWeatherInfo.xaml</DependentUpon>
     </Compile>
-    <Compile Include="DayWeatherSummary.xaml.cs">
-      <DependentUpon>DayWeatherSummary.xaml</DependentUpon>
-    </Compile>
     <Compile Include="model\ViewData.cs" />
     <Compile Include="utilities\WeatherDataLoader.cs" />
     <Page Include="CurrentWeatherInfo.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="DayWeatherSummary.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

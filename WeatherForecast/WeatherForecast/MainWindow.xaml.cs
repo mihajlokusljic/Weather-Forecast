@@ -48,7 +48,6 @@ namespace WeatherForecast
             InitializeComponent();
             this.Height = (System.Windows.SystemParameters.PrimaryScreenHeight * 0.7);
             this.Width = (System.Windows.SystemParameters.PrimaryScreenWidth * 0.7);
-            WeatherDataLoader loader = new WeatherDataLoader();
             loader.refreshWeatherData("3194360");
             loader.readCitiesFromJson();
             this.DataContext = loader;
