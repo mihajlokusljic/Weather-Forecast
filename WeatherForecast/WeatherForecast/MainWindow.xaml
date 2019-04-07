@@ -4,6 +4,7 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WeatherForecast"
+        xmlns:toolkit="clr-namespace:System.Windows.Controls;assembly=System.Windows.Controls.Input.Toolkit"
         mc:Ignorable="d"
         Title="Weather Forecast" Height="550" Width="900" WindowStartupLocation="CenterScreen" Background="#FF1A273D" MinWidth="365" MinHeight="270">
 
@@ -11,6 +12,15 @@
         <Image x:Key="historyIcon" Source="resources/images/searchHistory.png"/>
         <Image x:Key="refreshIcon" Source="resources/images/refreshIcon.png"/>
         <Image x:Key="bookmarkedIcon" Source="resources/images/bookmarkedIcon.png"/>
+        <DataTemplate x:Key="AutoCompleteBoxItemTemplate">
+            <StackPanel Orientation="Horizontal">
+                <Label Content="{Binding name}"
+                       Width="100" />
+                <Label Content="{Binding country}"
+                       FontStyle="Italic"
+                       Foreground="DarkGray" />
+            </StackPanel>
+        </DataTemplate>
     </Window.Resources>
     <Grid>
         <Grid.RowDefinitions>
@@ -25,16 +35,24 @@
             <ColumnDefinition/>
         </Grid.ColumnDefinitions>
 
+        <toolkit:AutoCompleteBox 
+            ItemsSource="{Binding Cities}"
+            SelectedItem="{Binding SelectedCity, Mode=TwoWay}" 
+            ValueMemberPath="name"
+            ItemFilter="{Binding CityFilter}"
+            IsTextCompletionEnabled="True"
+            ItemTemplate="{StaticResource AutoCompleteBoxItemTemplate}"
+            x:Name="Search" KeyUp="keyUpSearch" SelectionChanged="selectChangedSearch"
+            />
 
-        <TextBox Grid.Row="0" Grid.Column="0" Margin="5">Search</TextBox>
         <Button Grid.Row="0" Grid.Column="1" Width="40" Height="40" Margin="5" HorizontalAlignment="Left" Content="{StaticResource refreshIcon}" Background="Transparent" BorderBrush="Transparent" ToolTip="Refresh data"/>
         <StackPanel Grid.Row="0" Grid.Column="2" Orientation="Horizontal" HorizontalAlignment="Right">
             <Button Width="40" Height="40" Margin="3" Content="{StaticResource bookmarkedIcon}" Background="Transparent" BorderBrush="Transparent" ToolTip="Browse bookmarked locations"/>
             <Button Grid.Row="0" Grid.Column="2" Width="40" Height="40" Margin="3" Content="{StaticResource historyIcon}" Background="Transparent" BorderBrush="Transparent" ToolTip="Browse search history"/>
         </StackPanel>
-        
+
         <Viewbox Grid.Row="1" Grid.Column="1" Stretch="Uniform" HorizontalAlignment="Center">
-            <local:CurrentWeatherInfo/>
+            <local:CurrentWeatherInfo Loaded="CurrentWeatherInfo_Loaded"/>
         </Viewbox>
 
         <Viewbox Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="3">

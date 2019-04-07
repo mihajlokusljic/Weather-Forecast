@@ -132,4 +132,16 @@ namespace WeatherForecast.model
         public int cod { get; set; }
     }
 
+    public class CitySearch
+    {
+        public int id { get; set; }
+        public string name { get; set; }
+        public string country { get; set; }
+    }
+
+    public class CityListSearch
+    {
+        public IList<CitySearch> cities { get; set; }
+    }
+
 }
