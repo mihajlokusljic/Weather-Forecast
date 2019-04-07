@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using WeatherForecast.model;
 
 namespace WeatherForecast
 {
@@ -24,5 +25,22 @@ namespace WeatherForecast
         {
             InitializeComponent();
         }
+
+
+
+
+
+        public DayForecast DailyForecast
+        {
+            get { return (DayForecast)GetValue(DailyForecastProperty); }
+            set { SetValue(DailyForecastProperty, value); }
+        }
+
+        // Using a DependencyProperty as the backing store for DailyForecast.  This enables animation, styling, binding, etc...
+        public static readonly DependencyProperty DailyForecastProperty =
+            DependencyProperty.Register("DailyForecast", typeof(DayForecast), typeof(DayWeatherSummary), new PropertyMetadata(new DayForecast()));
+
+
+
     }
 }

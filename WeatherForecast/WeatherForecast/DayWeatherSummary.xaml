@@ -7,7 +7,7 @@
              mc:Ignorable="d" 
              d:DesignHeight="300" d:DesignWidth="300">
     <StackPanel Orientation="Vertical">
-        <Label Foreground="White" HorizontalAlignment="Center" FontSize="18">Day of week</Label>
+        <Label Foreground="White" HorizontalAlignment="Center" FontSize="18" Content="{Binding DailyForecast.DayOfWeek, UpdateSourceTrigger=PropertyChanged}"/>
         <Label Foreground="White" HorizontalAlignment="Center" FontSize="18">mm/dd/yyyy</Label>
         <Image Source="resources/images/Rain.png" Width="100" Height="100"/>
         <Label Foreground="White" HorizontalAlignment="Center" FontSize="18">Some description</Label>

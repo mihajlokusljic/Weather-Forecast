@@ -7,7 +7,7 @@
              mc:Ignorable="d" 
              d:DesignHeight="300" d:DesignWidth="300">
     <StackPanel Orientation="Vertical" Background="Transparent">
-        <Label Content="{Binding Path=Weather.city.Name, UpdateSourceTrigger=PropertyChanged}" Foreground="White" HorizontalAlignment="Center" FontSize="36"/>
+        <Label Content="{Binding Path=Weather.CurrentWeatherData.CityAndCountry, UpdateSourceTrigger=PropertyChanged}" Foreground="White" HorizontalAlignment="Center" FontSize="36"/>
         <Grid>
             <Grid.RowDefinitions>
                 <RowDefinition/>
@@ -17,9 +17,9 @@
                 <ColumnDefinition/>
             </Grid.ColumnDefinitions>
             <Image Source="resources/images/Rain.png" Width="80" Height="80" Margin="10" Grid.Row="0" Grid.Column="0"/>
-            <Label Foreground="White" FontSize="48" VerticalAlignment="Bottom" Grid.Row="0" Grid.Column="1">-XY °C</Label>
+            <Label Content="{Binding Path=Weather.CurrentWeatherData.Temperature, UpdateSourceTrigger=PropertyChanged }" Foreground="White" FontSize="48" VerticalAlignment="Bottom" Grid.Row="0" Grid.Column="1"/>
         </Grid>
-        
-        <Label Foreground="White" HorizontalAlignment="Center" FontSize="18">Currently: Some description</Label>
+
+        <Label Content="{Binding Path=Weather.CurrentWeatherData.Description, UpdateSourceTrigger=PropertyChanged }" Foreground="White" HorizontalAlignment="Center" FontSize="18"/>
     </StackPanel>
 </UserControl>

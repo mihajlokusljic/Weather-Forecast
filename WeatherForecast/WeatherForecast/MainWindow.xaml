@@ -38,7 +38,7 @@
         </Viewbox>
 
         <Viewbox Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="3">
-            <Grid>
+            <Grid x:Name="Root">
                 <Grid.RowDefinitions>
                     <RowDefinition/>
                 </Grid.RowDefinitions>
@@ -51,27 +51,62 @@
                 </Grid.ColumnDefinitions>
 
                 <DockPanel Grid.Row="0" Grid.Column="0" Background="#FF123163" Margin="10">
-                    <local:DayWeatherSummary DockPanel.Dock="Top"/>
+                    <StackPanel Orientation="Vertical" DockPanel.Dock="Top">
+                        <Label Foreground="White" HorizontalAlignment="Center" FontSize="18" Content="{Binding Weather.DayForecasts[0].DayOfWeek, UpdateSourceTrigger=PropertyChanged}"/>
+                        <Label Foreground="White" HorizontalAlignment="Center" FontSize="18" Content="{Binding Weather.DayForecasts[0].Date, UpdateSourceTrigger=PropertyChanged}" />
+                        <Image Source="resources/images/Rain.png" Width="100" Height="100"/>
+                        <Label Foreground="White" HorizontalAlignment="Center" FontSize="18" Content="{Binding Weather.DayForecasts[0].Description, UpdateSourceTrigger=PropertyChanged}"/>
+                        <Label Foreground="White" FontSize="18" Content="{Binding Weather.DayForecasts[0].MinTemperature, UpdateSourceTrigger=PropertyChanged}" />
+                        <Label Foreground="White" FontSize="18" Content="{Binding Weather.DayForecasts[0].MaxTemperature, UpdateSourceTrigger=PropertyChanged}" />
+                    </StackPanel>
                     <Button DockPanel.Dock="Bottom" Margin="5" Height="30" Background="#FF1D4D9B" Foreground="#FFFFFDFD" BorderBrush="#FF1D4D9B" FontSize="16">Hourly forecast</Button>
                 </DockPanel>
 
                 <DockPanel Grid.Row="0" Grid.Column="1" Background="#FF123163" Margin="10">
-                    <local:DayWeatherSummary DockPanel.Dock="Top"/>
+                    <StackPanel Orientation="Vertical" DockPanel.Dock="Top">
+                        <Label Foreground="White" HorizontalAlignment="Center" FontSize="18" Content="{Binding Weather.DayForecasts[1].DayOfWeek, UpdateSourceTrigger=PropertyChanged}"/>
+                        <Label Foreground="White" HorizontalAlignment="Center" FontSize="18" Content="{Binding Weather.DayForecasts[1].Date, UpdateSourceTrigger=PropertyChanged}" />
+                        <Image Source="resources/images/Rain.png" Width="100" Height="100"/>
+                        <Label Foreground="White" HorizontalAlignment="Center" FontSize="18" Content="{Binding Weather.DayForecasts[1].Description, UpdateSourceTrigger=PropertyChanged}"/>
+                        <Label Foreground="White" FontSize="18" Content="{Binding Weather.DayForecasts[1].MinTemperature, UpdateSourceTrigger=PropertyChanged}" />
+                        <Label Foreground="White" FontSize="18" Content="{Binding Weather.DayForecasts[1].MaxTemperature, UpdateSourceTrigger=PropertyChanged}" />
+                    </StackPanel>
                     <Button DockPanel.Dock="Bottom" Margin="5" Height="30" Background="#FF1D4D9B" Foreground="#FFFFFDFD" BorderBrush="#FF1D4D9B" FontSize="16">Hourly forecast</Button>
                 </DockPanel>
 
                 <DockPanel Grid.Row="0" Grid.Column="2" Background="#FF123163" Margin="10">
-                    <local:DayWeatherSummary DockPanel.Dock="Top"/>
+                    <StackPanel Orientation="Vertical" DockPanel.Dock="Top">
+                        <Label Foreground="White" HorizontalAlignment="Center" FontSize="18" Content="{Binding Weather.DayForecasts[2].DayOfWeek, UpdateSourceTrigger=PropertyChanged}"/>
+                        <Label Foreground="White" HorizontalAlignment="Center" FontSize="18" Content="{Binding Weather.DayForecasts[2].Date, UpdateSourceTrigger=PropertyChanged}" />
+                        <Image Source="resources/images/Rain.png" Width="100" Height="100"/>
+                        <Label Foreground="White" HorizontalAlignment="Center" FontSize="18" Content="{Binding Weather.DayForecasts[2].Description, UpdateSourceTrigger=PropertyChanged}"/>
+                        <Label Foreground="White" FontSize="18" Content="{Binding Weather.DayForecasts[2].MinTemperature, UpdateSourceTrigger=PropertyChanged}" />
+                        <Label Foreground="White" FontSize="18" Content="{Binding Weather.DayForecasts[2].MaxTemperature, UpdateSourceTrigger=PropertyChanged}" />
+                    </StackPanel>
                     <Button DockPanel.Dock="Bottom" Margin="5" Height="30" Background="#FF1D4D9B" Foreground="#FFFFFDFD" BorderBrush="#FF1D4D9B" FontSize="16">Hourly forecast</Button>
                 </DockPanel>
 
                 <DockPanel Grid.Row="0" Grid.Column="3" Background="#FF123163" Margin="10">
-                    <local:DayWeatherSummary DockPanel.Dock="Top"/>
+                    <StackPanel Orientation="Vertical" DockPanel.Dock="Top">
+                        <Label Foreground="White" HorizontalAlignment="Center" FontSize="18" Content="{Binding Weather.DayForecasts[3].DayOfWeek, UpdateSourceTrigger=PropertyChanged}"/>
+                        <Label Foreground="White" HorizontalAlignment="Center" FontSize="18" Content="{Binding Weather.DayForecasts[3].Date, UpdateSourceTrigger=PropertyChanged}" />
+                        <Image Source="resources/images/Rain.png" Width="100" Height="100"/>
+                        <Label Foreground="White" HorizontalAlignment="Center" FontSize="18" Content="{Binding Weather.DayForecasts[3].Description, UpdateSourceTrigger=PropertyChanged}"/>
+                        <Label Foreground="White" FontSize="18" Content="{Binding Weather.DayForecasts[3].MinTemperature, UpdateSourceTrigger=PropertyChanged}" />
+                        <Label Foreground="White" FontSize="18" Content="{Binding Weather.DayForecasts[3].MaxTemperature, UpdateSourceTrigger=PropertyChanged}" />
+                    </StackPanel>
                     <Button DockPanel.Dock="Bottom" Margin="5" Height="30" Background="#FF1D4D9B" Foreground="#FFFFFDFD" BorderBrush="#FF1D4D9B" FontSize="16">Hourly forecast</Button>
                 </DockPanel>
 
                 <DockPanel Grid.Row="0" Grid.Column="4" Background="#FF123163" Margin="10">
-                    <local:DayWeatherSummary DockPanel.Dock="Top"/>
+                    <StackPanel Orientation="Vertical" DockPanel.Dock="Top">
+                        <Label Foreground="White" HorizontalAlignment="Center" FontSize="18" Content="{Binding Weather.DayForecasts[4].DayOfWeek, UpdateSourceTrigger=PropertyChanged}"/>
+                        <Label Foreground="White" HorizontalAlignment="Center" FontSize="18" Content="{Binding Weather.DayForecasts[4].Date, UpdateSourceTrigger=PropertyChanged}" />
+                        <Image Source="resources/images/Rain.png" Width="100" Height="100"/>
+                        <Label Foreground="White" HorizontalAlignment="Center" FontSize="18" Content="{Binding Weather.DayForecasts[4].Description, UpdateSourceTrigger=PropertyChanged}"/>
+                        <Label Foreground="White" FontSize="18" Content="{Binding Weather.DayForecasts[4].MinTemperature, UpdateSourceTrigger=PropertyChanged}" />
+                        <Label Foreground="White" FontSize="18" Content="{Binding Weather.DayForecasts[4].MaxTemperature, UpdateSourceTrigger=PropertyChanged}" />
+                    </StackPanel>
                     <Button DockPanel.Dock="Bottom" Margin="5" Height="30" Background="#FF1D4D9B" Foreground="#FFFFFDFD" BorderBrush="#FF1D4D9B" FontSize="16">Hourly forecast</Button>
                 </DockPanel>
 

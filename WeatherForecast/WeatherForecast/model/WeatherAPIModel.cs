@@ -9,8 +9,8 @@ namespace WeatherForecast.model
 {
     public class Coordinates
     {
-        public double lat; //latitude
-        public double lon; //longitude
+        public double lat { get; set; } //latitude
+        public double lon { get; set; } //longitude
     }
 
     public class City : INotifyPropertyChanged
@@ -90,39 +90,39 @@ namespace WeatherForecast.model
 
     public class WeatherInfo
     {
-        public double temp;
-        public double temp_min;
-        public double temp_max;
+        public double temp { get; set; }
+        public double temp_min { get; set; }
+        public double temp_max { get; set; }
 
     }
 
     public class WeatherType
     {
-        public string id;
-        public string main; // cloudy, rainy, sunny
-        public string description;
-        public string icon;
+        public string id { get; set; }
+        public string main { get; set; } // cloudy, rainy, sunny
+        public string description { get; set; }
+        public string icon { get; set; }
     }
 
     public class CloudPercentage
     {
-        public int all;
+        public int all { get; set; }
     }
 
     public class WindInfo
-    {
-        public double speed;
-        public double deg;
+    { 
+        public double speed { get; set; }
+        public double deg { get; set; }
     }
 
     public class WeatherMesurement
     {
-        public int dt; // date-time hash u UTC formatu
-        public WeatherInfo main;
-        public WeatherType[] weather;
-        public CloudPercentage clouds;
-        public WindInfo wind;
-        public string dt_txt;
+        public int dt { get; set; } // date-time hash u UTC formatu
+        public WeatherInfo main { get; set; }
+        public WeatherType[] weather { get; set; }
+        public CloudPercentage clouds { get; set; }
+        public WindInfo wind { get; set; }
+        public DateTime dt_txt { get; set; }
     }
 
     public class WeatherData

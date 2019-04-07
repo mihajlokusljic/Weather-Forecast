@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -12,7 +13,6 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
-using Newtonsoft.Json;
 using WeatherForecast.model;
 
 using WeatherForecast.utilities;
@@ -33,10 +33,21 @@ namespace WeatherForecast
             this.Height = (System.Windows.SystemParameters.PrimaryScreenHeight * 0.7);
             this.Width = (System.Windows.SystemParameters.PrimaryScreenWidth * 0.7);
             WeatherDataLoader loader = new WeatherDataLoader();
-            loader.refreshWeatherData("64013");
+            loader.refreshWeatherData("3194360");
             this.DataContext = loader;
 
         }
+
+        public ObservableCollection<DayForecast> DayForecastConcrete
+        {
+            get { return (ObservableCollection<DayForecast>)GetValue(DayForecastProperty); }
+            set { SetValue(DayForecastProperty, value); }
+        }
+
+        // Using a DependencyProperty as the backing store for Measurement.  This enables animation, styling, binding, etc...
+        public static readonly DependencyProperty DayForecastProperty =
+            DependencyProperty.Register("DayForecastConcrete", typeof(ObservableCollection<DayForecast>), typeof(DayWeatherSummary), new PropertyMetadata(new ObservableCollection<DayForecast>()));
+
 
 
     }

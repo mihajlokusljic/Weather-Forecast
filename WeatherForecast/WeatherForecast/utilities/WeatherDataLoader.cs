@@ -20,7 +20,7 @@ namespace WeatherForecast.utilities
             try
             {
                 return await httpClient.GetStringAsync("http://api.openweathermap.org/data/2.5/forecast?id=" +
-                    cityIdentifier + "&appid=53945fd3404ab75b8b8c7e076d3cd32f").ConfigureAwait(false); ;
+                    cityIdentifier + "&units=metric&appid=53945fd3404ab75b8b8c7e076d3cd32f").ConfigureAwait(false); ;
             }
             catch(Exception e)
             {
@@ -41,9 +41,9 @@ namespace WeatherForecast.utilities
             }
         }
 
-        private WeatherData _weather;
+        private ViewData _weather;
 
-        public WeatherData Weather
+        public ViewData Weather
         {
             get { return _weather; }
 
@@ -67,8 +67,12 @@ namespace WeatherForecast.utilities
 
         public void refreshWeatherData(string cityIdentifier) {
             string jsonData = getWeatherData(cityIdentifier);
-            Weather = JsonConvert.DeserializeObject<WeatherData>(jsonData);
+            WeatherData retVal = new WeatherData();
+            retVal = JsonConvert.DeserializeObject<WeatherData>(jsonData);
+            Weather = new ViewData();
+            Weather.AdaptAPI(retVal);
 
         }
+
     }
 }
