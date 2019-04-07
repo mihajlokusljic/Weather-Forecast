@@ -6,6 +6,9 @@ using System.Threading.Tasks;
 using System.Net.Http;
 using System.ComponentModel;
 using Newtonsoft.Json;
+using System.IO;
+using System.Windows.Controls;
+using System.Net;
 
 using WeatherForecast.model;
 
@@ -13,8 +16,42 @@ namespace WeatherForecast.utilities
 {
      public class WeatherDataLoader : INotifyPropertyChanged
     {
+
+        public const string cityListPath = @"../../resources/city_list.json";
+
+        public CityListSearch cityListSearch;
+        public IEnumerable<CitySearch> Cities
+        {
+            get { return loadCities(); }
+        }
+        
+        public CitySearch selectedCity;
+        public string URLI;
+
         public static readonly HttpClient httpClient = new HttpClient(); // static radi jedne instance
 
+        public CitySearch SelectedCity {
+            get { return selectedCity; }
+            set { selectedCity = value; }
+        }
+
+        public int numberOfCitiesList = 0;
+
+        public void setCounterToZero()
+        {
+            numberOfCitiesList = 0;
+        }
+
+        //https://www.broculos.net/2014/04/wpf-autocompletebox-autocomplete-text.html
+        public AutoCompleteFilterPredicate<object> CityFilter
+        {
+            get
+            {
+                return (searchText, obj) =>
+                    (obj as CitySearch).name.StartsWith(searchText) && numberOfCitiesList++ < 5;
+
+            }
+        }
         public static async Task<string> getWeatherDataJson(string cityIdentifier)
         {
             try
@@ -72,6 +109,44 @@ namespace WeatherForecast.utilities
             Weather = new ViewData();
             Weather.AdaptAPI(retVal);
 
+        }
+
+        public void readCitiesFromJson()
+        {
+            using (StreamReader reader = new StreamReader(cityListPath))
+            {
+                string cities = reader.ReadToEnd();
+                cityListSearch = JsonConvert.DeserializeObject<CityListSearch>(cities);
+            }
+        }
+
+        public List<CitySearch> loadCities()
+        {
+            List<CitySearch> Cities = new List<CitySearch>();
+
+            foreach(var city in cityListSearch.cities)
+            {
+                (Cities as List<CitySearch>).Add(city);
+            }
+            
+            return Cities;
+        }
+
+
+        public void changeCity()
+        {
+            if (selectedCity == null)
+            {
+                return;
+            }
+            URLI = @"http://api.openweathermap.org/data/2.5/forecast?id=" + SelectedCity.id +
+                "&APPID=53945fd3404ab75b8b8c7e076d3cd32f";
+            refreshWeatherData(SelectedCity.id.ToString());
+
+            for (int i = 0; i < Weather.list.Count(); i++)
+            {
+                OnPropertyChanged("Weather");
+            }
         }
 
     }
