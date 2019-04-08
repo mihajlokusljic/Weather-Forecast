@@ -91,3 +91,4 @@ C:\Users\kusljic\Documents\HCI WS\klon3\Weather-Forecast\WeatherForecast\Weather
 C:\Users\kusljic\Documents\HCI WS\klon3\Weather-Forecast\WeatherForecast\WeatherForecast\obj\Debug\WeatherForecast.csproj.CoreCompileInputs.cache
 C:\Users\kusljic\Documents\HCI WS\klon3\Weather-Forecast\WeatherForecast\WeatherForecast\obj\Debug\WeatherForecast.exe
 C:\Users\kusljic\Documents\HCI WS\klon3\Weather-Forecast\WeatherForecast\WeatherForecast\obj\Debug\WeatherForecast.pdb
+C:\Users\Vaso\Desktop\Fakultet\Interakcija_Covjek_Racunar\Weather-Forecast\WeatherForecast\WeatherForecast\obj\Debug\WeatherForecast.csprojAssemblyReference.cache

@@ -54,7 +54,24 @@
         </StackPanel>
 
         <Viewbox Grid.Row="1" Grid.Column="1" Stretch="Uniform" HorizontalAlignment="Center">
-            <local:CurrentWeatherInfo Loaded="CurrentWeatherInfo_Loaded"/>
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition/>
+                    <RowDefinition Height="2*"/>
+                    <RowDefinition/>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="2*"/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+                <Label Content="{Binding Path=Weather.CurrentWeatherData.CityAndCountry, UpdateSourceTrigger=PropertyChanged}" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" Foreground="White" HorizontalAlignment="Center" FontSize="36"/>
+                <Button Grid.Row="0" Grid.Column="2" Height="40" Width="40">Bkm</Button>
+                <Image Source="{Binding Path=Weather.CurrentWeatherData.WeatherImage, UpdateSourceTrigger=PropertyChanged }" Width="90" Height="90" Margin="10" Grid.Row="1" Grid.Column="0"/>
+                <Label Content="{Binding Path=Weather.CurrentWeatherData.Temperature, UpdateSourceTrigger=PropertyChanged }" Foreground="White" FontSize="48" VerticalAlignment="Center" Grid.Row="1" Grid.Column="1"/>
+                <Label Content="{Binding Path=Weather.CurrentWeatherData.Description, UpdateSourceTrigger=PropertyChanged }" Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2" Foreground="White" HorizontalAlignment="Center" FontSize="20"/>
+            </Grid>
+
         </Viewbox>
 
         <Viewbox Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="3">
