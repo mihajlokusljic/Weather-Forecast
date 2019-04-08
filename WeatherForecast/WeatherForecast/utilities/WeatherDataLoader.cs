@@ -15,12 +15,15 @@ using System.Collections.ObjectModel;
 
 namespace WeatherForecast.utilities
 {
-     public class WeatherDataLoader : INotifyPropertyChanged
+
+    public class WeatherDataLoader : INotifyPropertyChanged
     {
+        public static readonly HttpClient httpClient = new HttpClient(); // static radi jedne instance
+        public const string cityListPath = @"../../resources/city_list.json";
+        public const string favCitiesListPath = @"../../resources/favourites.json";
         public int IndexSelectedDay { get; set; } = 0;
 
         private DayForecast _selectedDay;
-
         public DayForecast SelectedDay
         {
             get { return _selectedDay; }
@@ -34,8 +37,6 @@ namespace WeatherForecast.utilities
             }
         }
 
-        public const string cityListPath = @"../../resources/city_list.json";
-        public const string favCitiesListPath = @"../../resources/favourites.json";
         private string refreshMessage;
         public string RefreshMessage
         {
@@ -71,7 +72,17 @@ namespace WeatherForecast.utilities
         public CitySearch selectedCity;
         public string URLI;
 
-        public static readonly HttpClient httpClient = new HttpClient(); // static radi jedne instance
+        private static async Task<string> currentLocationDescriptorJson()
+        {
+            return await httpClient.GetStringAsync("https://geoip-db.com/json/").ConfigureAwait(false);
+        }
+
+        public static CityDescriptor getCurrentLocation()
+        {
+            string cityDescriptorJson = currentLocationDescriptorJson().GetAwaiter().GetResult();
+            CityDescriptor ret = JsonConvert.DeserializeObject<CityDescriptor>(cityDescriptorJson);
+            return ret;
+        }
 
         public CitySearch SelectedCity {
             get { return selectedCity; }
@@ -221,11 +232,11 @@ namespace WeatherForecast.utilities
             OnPropertyChanged("Weather");
         }
 
-        public void defaultSelectedCity()
+        public void selectCity(CityDescriptor descriptor)
         {
             foreach (CitySearch city in cityListSearch.cities)
             {
-                if (city.name.Equals("Novi Sad"))
+                if (city.name.Equals(descriptor.city) && city.country.Equals(descriptor.country_code))
                 {
                     selectedCity = city;
                     break;

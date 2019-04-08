@@ -13,6 +13,12 @@ namespace WeatherForecast.model
         public double lon { get; set; } //longitude
     }
 
+    public class CityDescriptor
+    {
+        public string city { get; set; }
+        public string country_code { get; set; }
+    }
+
     public class City : INotifyPropertyChanged
     {
         public event PropertyChangedEventHandler PropertyChanged;

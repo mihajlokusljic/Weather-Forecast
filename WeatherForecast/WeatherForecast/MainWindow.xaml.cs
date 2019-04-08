@@ -50,12 +50,13 @@ namespace WeatherForecast
             InitializeComponent();
             this.Height = (System.Windows.SystemParameters.PrimaryScreenHeight * 0.7);
             this.Width = (System.Windows.SystemParameters.PrimaryScreenWidth * 0.7);
-            DateTime dt = DateTime.Now;
-            loader.RefreshMessage = "Last time updated: " + dt.ToString();
             loader.readCitiesFromJson();
-            loader.defaultSelectedCity();
+            CityDescriptor currentCity = WeatherDataLoader.getCurrentLocation();
+            loader.selectCity(currentCity);
             loader.refreshWeatherData(loader.SelectedCity.id.ToString());
             loader.SelectedDay = loader.Weather.DayForecasts[0];
+            DateTime dt = DateTime.Now;
+            loader.RefreshMessage = "Last time updated: " + dt.ToString();
             loader.loadFavouriteCities();
             CheckFavourite();
             this.DataContext = loader;
@@ -63,7 +64,6 @@ namespace WeatherForecast
 
         private void CheckFavourite()
         {
-
                 if (!loader.FavouriteCities.Contains(loader.SelectedCity))
                 {
 
@@ -74,11 +74,7 @@ namespace WeatherForecast
                 {
                     favOff.Visibility = Visibility.Collapsed;
                     favOn.Visibility = Visibility.Visible;
-
-
                 }
-            
-            
         }
 
         private void CurrentWeatherInfo_Loaded(object sender, RoutedEventArgs e)
