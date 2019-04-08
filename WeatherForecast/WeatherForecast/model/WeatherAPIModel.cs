@@ -137,6 +137,24 @@ namespace WeatherForecast.model
         public int id { get; set; }
         public string name { get; set; }
         public string country { get; set; }
+
+        //public override bool Equals(CitySearch other)
+        //{
+        //    if (other == null) return false;
+        //    return (this.id.Equals(other.id));
+        //}
+
+        public override bool Equals(object obj)
+        {
+            var item = obj as CitySearch;
+
+            if (item == null)
+            {
+                return false;
+            }
+
+            return this.id == item.id;
+        }
     }
 
     public class CityListSearch

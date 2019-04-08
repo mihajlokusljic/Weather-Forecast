@@ -17,6 +17,8 @@ using WeatherForecast.model;
 
 using WeatherForecast.utilities;
 using System.ComponentModel;
+using System.IO;
+using Newtonsoft.Json;
 
 namespace WeatherForecast
 {
@@ -32,6 +34,7 @@ namespace WeatherForecast
         public void keyUpSearch(object sender, KeyEventArgs e)
         {
             loader.setCounterToZero();
+            
         }
 
         public void selectChangedSearch(object sender, SelectionChangedEventArgs e)
@@ -39,6 +42,7 @@ namespace WeatherForecast
             if (loader.SelectedCity != null)
             {
                 loader.changeCity();
+                CheckFavourite();
              
             }
         }
@@ -50,9 +54,32 @@ namespace WeatherForecast
             this.Width = (System.Windows.SystemParameters.PrimaryScreenWidth * 0.7);
             loader.refreshWeatherData("3194360");
             loader.readCitiesFromJson();
+            loader.defaultSelectedCity();
+            loader.loadFavouriteCities();
+            CheckFavourite();
             this.DataContext = loader;
            
 
+        }
+
+        private void CheckFavourite()
+        {
+
+                if (!loader.FavouriteCities.Contains(loader.SelectedCity))
+                {
+
+                    favOn.Visibility = Visibility.Collapsed;
+                    favOff.Visibility = Visibility.Visible;
+                }
+                else
+                {
+                    favOff.Visibility = Visibility.Collapsed;
+                    favOn.Visibility = Visibility.Visible;
+
+
+                }
+            
+            
         }
 
         private void CurrentWeatherInfo_Loaded(object sender, RoutedEventArgs e)
@@ -69,8 +96,57 @@ namespace WeatherForecast
             else
             {
                 listbox.Visibility = Visibility.Visible;
+                listboxFav.Visibility = Visibility.Collapsed;
             }
             
+        }        
+
+        private void Favourites_Click(object sender, RoutedEventArgs e)
+        {
+            if (listboxFav.Visibility == Visibility.Visible)
+            {
+                listboxFav.Visibility = Visibility.Collapsed;
+            }
+            else
+            {
+                listboxFav.Visibility = Visibility.Visible;
+                listbox.Visibility = Visibility.Collapsed;
+            }
+
+        }
+
+        private void Fav_On(object sender, RoutedEventArgs e)
+        {
+            favOn.Visibility = Visibility.Collapsed;
+            favOff.Visibility = Visibility.Visible;
+            if (loader.SelectedCity != null)
+            {
+                loader.favouriteCities.Remove(loader.SelectedCity);
+                SaveFavourites();
+
+            }
+        }
+
+        private void Fav_Off(object sender, RoutedEventArgs e)
+        {
+            favOff.Visibility = Visibility.Collapsed;
+            favOn.Visibility = Visibility.Visible;
+            if (loader.SelectedCity != null)
+            {
+                loader.favouriteCities.Add(loader.SelectedCity);
+                SaveFavourites();
+
+            }
+        }
+
+        private void SaveFavourites()
+        {
+            using (StreamWriter file = File.CreateText(WeatherDataLoader.favCitiesListPath))
+            {
+                JsonSerializer serializer = new JsonSerializer();
+                loader.favCityListSearch.cities = loader.favouriteCities;
+                serializer.Serialize(file, loader.favCityListSearch);
+            }
         }
     }
 }

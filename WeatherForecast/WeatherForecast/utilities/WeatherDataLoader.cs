@@ -19,8 +19,10 @@ namespace WeatherForecast.utilities
     {
 
         public const string cityListPath = @"../../resources/city_list.json";
+        public const string favCitiesListPath = @"../../resources/favourites.json";
 
         public CityListSearch cityListSearch;
+        public CityListSearch favCityListSearch;
         public ObservableCollection<CitySearch> historyList = new ObservableCollection<CitySearch>();
         public IEnumerable<CitySearch> Cities
         {
@@ -35,7 +37,7 @@ namespace WeatherForecast.utilities
             }
             
         }
-
+        public ObservableCollection<CitySearch> favouriteCities = new ObservableCollection<CitySearch>();
         public CitySearch selectedCity;
         public string URLI;
 
@@ -46,6 +48,10 @@ namespace WeatherForecast.utilities
             set { selectedCity = value; }
         }
 
+        public IEnumerable<CitySearch> FavouriteCities
+        {
+            get { return favouriteCities; }
+        }
         public int numberOfCitiesList = 0;
 
         public void setCounterToZero()
@@ -143,6 +149,31 @@ namespace WeatherForecast.utilities
             return Cities;
         }
 
+        public void loadFavouriteCities()
+        {
+            if (new FileInfo(favCitiesListPath).Length == 0)
+            {
+                favCityListSearch = new CityListSearch();
+                return;
+            }
+            using (StreamReader reader = new StreamReader(favCitiesListPath))
+            {
+                string f_cities = reader.ReadToEnd();
+                favCityListSearch = JsonConvert.DeserializeObject<CityListSearch>(f_cities);
+            }
+            if (favCityListSearch == null)
+            {
+                favCityListSearch = new CityListSearch();
+                return;
+            }
+            foreach (var city in favCityListSearch.cities)
+            {
+                (favouriteCities as ObservableCollection<CitySearch>).Add(city);
+            }
+
+            Console.WriteLine(favouriteCities.Count());
+
+        }
 
         public void changeCity()
         {
@@ -158,6 +189,18 @@ namespace WeatherForecast.utilities
             }
             refreshWeatherData(SelectedCity.id.ToString());
             OnPropertyChanged("Weather");
+        }
+
+        public void defaultSelectedCity()
+        {
+            foreach (CitySearch city in cityListSearch.cities)
+            {
+                if (city.name.Equals("Novi Sad"))
+                {
+                    selectedCity = city;
+                    break;
+                }
+            }
         }
         
 
