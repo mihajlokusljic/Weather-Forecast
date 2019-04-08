@@ -51,7 +51,7 @@
         <StackPanel Grid.Row="0" Grid.Column="2" Orientation="Horizontal" HorizontalAlignment="Right">
             <Button Width="40" Height="40" Margin="3" Content="{StaticResource bookmarkedIcon}" Background="Transparent" BorderBrush="Transparent" ToolTip="Browse bookmarked locations"/>
             <Button Grid.Row="0" Grid.Column="2" Width="40" Height="40" Margin="3" Content="{StaticResource historyIcon}" Background="Transparent" BorderBrush="Transparent" ToolTip="Browse search history" Click="History_Click"/>
-            
+
         </StackPanel>
         <ListBox Grid.Row ="1" Grid.Column="2" Visibility="Collapsed" Foreground="White" Background="#FF1A273D" x:Name="listbox" Width="200" Height="Auto" ItemsSource="{Binding HistoryList}" 
                  SelectedItem ="{Binding SelectedCity}" DisplayMemberPath="name" HorizontalAlignment="Right" SelectionChanged="selectChangedSearch">
@@ -78,8 +78,9 @@
 
         </Viewbox>
 
+        <!--Five day forecast-->
         <Viewbox Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="3">
-            <Grid>
+            <Grid Name="fiveDayForecast" Visibility="Visible">
                 <Grid.RowDefinitions>
                     <RowDefinition/>
                 </Grid.RowDefinitions>
@@ -100,7 +101,7 @@
                         <Label Foreground="White" FontSize="18" Content="{Binding Weather.DayForecasts[0].MinTemperature, UpdateSourceTrigger=PropertyChanged}" />
                         <Label Foreground="White" FontSize="18" Content="{Binding Weather.DayForecasts[0].MaxTemperature, UpdateSourceTrigger=PropertyChanged}" />
                     </StackPanel>
-                    <Button DockPanel.Dock="Bottom" Margin="5" Height="30" Background="#FF1D4D9B" Foreground="#FFFFFDFD" BorderBrush="#FF1D4D9B" FontSize="16">Hourly forecast</Button>
+                    <Button x:Name="day1ForecastBtn" DockPanel.Dock="Bottom" Margin="5" Height="30" Background="#FF1D4D9B" Foreground="#FFFFFDFD" BorderBrush="#FF1D4D9B" FontSize="16" Click="firstDayForecast">Hourly forecast</Button>
                 </DockPanel>
 
                 <DockPanel Grid.Row="0" Grid.Column="1" Background="#FF123163" Margin="10">
@@ -112,7 +113,7 @@
                         <Label Foreground="White" FontSize="18" Content="{Binding Weather.DayForecasts[1].MinTemperature, UpdateSourceTrigger=PropertyChanged}" />
                         <Label Foreground="White" FontSize="18" Content="{Binding Weather.DayForecasts[1].MaxTemperature, UpdateSourceTrigger=PropertyChanged}" />
                     </StackPanel>
-                    <Button DockPanel.Dock="Bottom" Margin="5" Height="30" Background="#FF1D4D9B" Foreground="#FFFFFDFD" BorderBrush="#FF1D4D9B" FontSize="16">Hourly forecast</Button>
+                    <Button DockPanel.Dock="Bottom" Margin="5" Height="30" Background="#FF1D4D9B" Foreground="#FFFFFDFD" BorderBrush="#FF1D4D9B" FontSize="16" Click="secondDayForecast">Hourly forecast</Button>
                 </DockPanel>
 
                 <DockPanel Grid.Row="0" Grid.Column="2" Background="#FF123163" Margin="10">
@@ -124,7 +125,7 @@
                         <Label Foreground="White" FontSize="18" Content="{Binding Weather.DayForecasts[2].MinTemperature, UpdateSourceTrigger=PropertyChanged}" />
                         <Label Foreground="White" FontSize="18" Content="{Binding Weather.DayForecasts[2].MaxTemperature, UpdateSourceTrigger=PropertyChanged}" />
                     </StackPanel>
-                    <Button DockPanel.Dock="Bottom" Margin="5" Height="30" Background="#FF1D4D9B" Foreground="#FFFFFDFD" BorderBrush="#FF1D4D9B" FontSize="16">Hourly forecast</Button>
+                    <Button DockPanel.Dock="Bottom" Margin="5" Height="30" Background="#FF1D4D9B" Foreground="#FFFFFDFD" BorderBrush="#FF1D4D9B" FontSize="16" Click="thirdDayForecast">Hourly forecast</Button>
                 </DockPanel>
 
                 <DockPanel Grid.Row="0" Grid.Column="3" Background="#FF123163" Margin="10">
@@ -136,7 +137,7 @@
                         <Label Foreground="White" FontSize="18" Content="{Binding Weather.DayForecasts[3].MinTemperature, UpdateSourceTrigger=PropertyChanged}" />
                         <Label Foreground="White" FontSize="18" Content="{Binding Weather.DayForecasts[3].MaxTemperature, UpdateSourceTrigger=PropertyChanged}" />
                     </StackPanel>
-                    <Button DockPanel.Dock="Bottom" Margin="5" Height="30" Background="#FF1D4D9B" Foreground="#FFFFFDFD" BorderBrush="#FF1D4D9B" FontSize="16">Hourly forecast</Button>
+                    <Button DockPanel.Dock="Bottom" Margin="5" Height="30" Background="#FF1D4D9B" Foreground="#FFFFFDFD" BorderBrush="#FF1D4D9B" FontSize="16" Click="fourthDayForecast">Hourly forecast</Button>
                 </DockPanel>
 
                 <DockPanel Grid.Row="0" Grid.Column="4" Background="#FF123163" Margin="10">
@@ -148,10 +149,550 @@
                         <Label Foreground="White" FontSize="18" Content="{Binding Weather.DayForecasts[4].MinTemperature, UpdateSourceTrigger=PropertyChanged}" />
                         <Label Foreground="White" FontSize="18" Content="{Binding Weather.DayForecasts[4].MaxTemperature, UpdateSourceTrigger=PropertyChanged}" />
                     </StackPanel>
-                    <Button DockPanel.Dock="Bottom" Margin="5" Height="30" Background="#FF1D4D9B" Foreground="#FFFFFDFD" BorderBrush="#FF1D4D9B" FontSize="16">Hourly forecast</Button>
+                    <Button DockPanel.Dock="Bottom" Margin="5" Height="30" Background="#FF1D4D9B" Foreground="#FFFFFDFD" BorderBrush="#FF1D4D9B" FontSize="16" Click="fifthDayForecast">Hourly forecast</Button>
                 </DockPanel>
 
             </Grid>
+        </Viewbox>
+
+        <!--Selected day forecast-->
+        <Viewbox Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="3">
+            <DockPanel Visibility="Collapsed" Name="singleDayForecast" VerticalAlignment="Stretch" Height="428" RenderTransformOrigin="0.5,0.5" Margin="10,0">
+                <DockPanel.RenderTransform>
+                    <TransformGroup>
+                        <ScaleTransform/>
+                        <SkewTransform/>
+                        <RotateTransform/>
+                        <TranslateTransform Y="-40"/>
+                    </TransformGroup>
+                </DockPanel.RenderTransform>
+                <StackPanel DockPanel.Dock="Top" Orientation="Horizontal">
+                    <Button DockPanel.Dock="Top" Click="exitDetailView">Back</Button>
+                    <Label DockPanel.Dock="Top" FontSize="24" Foreground="White">Back to 5 day forecast</Label>
+                </StackPanel>
+
+                <Grid DockPanel.Dock="Bottom" Margin="0, 30, 0 0">
+                    <Grid.RowDefinitions>
+                        <RowDefinition/>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="1*"/>
+                        <ColumnDefinition Width="1*"/>
+                        <ColumnDefinition Width="1*"/>
+                        <ColumnDefinition Width="1*"/>
+                        <ColumnDefinition Width="1*"/>
+                        <ColumnDefinition Width="1*"/>
+                        <ColumnDefinition Width="1*"/>
+                        <ColumnDefinition Width="1*"/>
+                    </Grid.ColumnDefinitions>
+
+                    <StackPanel Grid.Row="0" Grid.Column="0" Background="#FF123163" Margin="5,5,5,-20">
+                        <Label Content="{Binding SelectedDay.Date, UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Center" Foreground="White" FontSize="20" RenderTransformOrigin="0.5,0.5">
+                            <Label.RenderTransform>
+                                <TransformGroup>
+                                    <ScaleTransform/>
+                                    <SkewTransform/>
+                                    <RotateTransform/>
+                                    <TranslateTransform Y="33"/>
+                                </TransformGroup>
+                            </Label.RenderTransform>
+                        </Label>
+                        <Label Content="{Binding SelectedDay.WeatherMeasurements[0].Time}" HorizontalAlignment="Center" Foreground="White" FontSize="20" RenderTransformOrigin="0.5,0.5">
+                            <Label.RenderTransform>
+                                <TransformGroup>
+                                    <ScaleTransform/>
+                                    <SkewTransform/>
+                                    <RotateTransform/>
+                                    <TranslateTransform Y="33"/>
+                                </TransformGroup>
+                            </Label.RenderTransform>
+                        </Label>
+                        <Image Source="{Binding SelectedDay.WeatherMeasurements[0].Image}" Width="100" Height="100" RenderTransformOrigin="0.5,0.5">
+                            <Image.RenderTransform>
+                                <TransformGroup>
+                                    <ScaleTransform/>
+                                    <SkewTransform/>
+                                    <RotateTransform/>
+                                    <TranslateTransform Y="33"/>
+                                </TransformGroup>
+                            </Image.RenderTransform>
+                        </Image>
+                        <Label Content="{Binding SelectedDay.WeatherMeasurements[0].TemperatureStr}" VerticalAlignment="Center" Foreground="White" HorizontalAlignment="Center" FontSize="36" RenderTransformOrigin="0.5,0.5">
+                            <Label.RenderTransform>
+                                <TransformGroup>
+                                    <ScaleTransform/>
+                                    <SkewTransform/>
+                                    <RotateTransform/>
+                                    <TranslateTransform Y="33"/>
+                                </TransformGroup>
+                            </Label.RenderTransform>
+                        </Label>
+                        <Label Content="{Binding SelectedDay.WeatherMeasurements[0].Description}" HorizontalAlignment="Center" Foreground="White" FontSize="20" RenderTransformOrigin="0.5,0.5">
+                            <Label.RenderTransform>
+                                <TransformGroup>
+                                    <ScaleTransform/>
+                                    <SkewTransform/>
+                                    <RotateTransform/>
+                                    <TranslateTransform Y="33"/>
+                                </TransformGroup>
+                            </Label.RenderTransform>
+                        </Label>
+                        <Label Content="{Binding SelectedDay.WeatherMeasurements[0].WindSpeed}" HorizontalAlignment="Center" Foreground="White" FontSize="20" RenderTransformOrigin="0.5,0.5">
+                            <Label.RenderTransform>
+                                <TransformGroup>
+                                    <ScaleTransform/>
+                                    <SkewTransform/>
+                                    <RotateTransform/>
+                                    <TranslateTransform Y="33"/>
+                                </TransformGroup>
+                            </Label.RenderTransform>
+                        </Label>
+                    </StackPanel>
+                    
+                    <StackPanel Grid.Row="0" Grid.Column="1" Background="#FF123163" Margin="5,5,5,-20">
+                        <Label Content="{Binding SelectedDay.Date, UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Center" Foreground="White" FontSize="20" RenderTransformOrigin="0.5,0.5">
+                            <Label.RenderTransform>
+                                <TransformGroup>
+                                    <ScaleTransform/>
+                                    <SkewTransform/>
+                                    <RotateTransform/>
+                                    <TranslateTransform Y="33"/>
+                                </TransformGroup>
+                            </Label.RenderTransform>
+                        </Label>
+                        <Label Content="{Binding SelectedDay.WeatherMeasurements[1].Time}" HorizontalAlignment="Center" Foreground="White" FontSize="20" RenderTransformOrigin="0.5,0.5">
+                            <Label.RenderTransform>
+                                <TransformGroup>
+                                    <ScaleTransform/>
+                                    <SkewTransform/>
+                                    <RotateTransform/>
+                                    <TranslateTransform Y="33"/>
+                                </TransformGroup>
+                            </Label.RenderTransform>
+                        </Label>
+                        <Image Source="{Binding SelectedDay.WeatherMeasurements[1].Image}" Width="100" Height="100" RenderTransformOrigin="0.5,0.5">
+                            <Image.RenderTransform>
+                                <TransformGroup>
+                                    <ScaleTransform/>
+                                    <SkewTransform/>
+                                    <RotateTransform/>
+                                    <TranslateTransform Y="33"/>
+                                </TransformGroup>
+                            </Image.RenderTransform>
+                        </Image>
+                        <Label Content="{Binding SelectedDay.WeatherMeasurements[1].TemperatureStr}" VerticalAlignment="Center" Foreground="White" HorizontalAlignment="Center" FontSize="36" RenderTransformOrigin="0.5,0.5">
+                            <Label.RenderTransform>
+                                <TransformGroup>
+                                    <ScaleTransform/>
+                                    <SkewTransform/>
+                                    <RotateTransform/>
+                                    <TranslateTransform Y="33"/>
+                                </TransformGroup>
+                            </Label.RenderTransform>
+                        </Label>
+                        <Label Content="{Binding SelectedDay.WeatherMeasurements[1].Description}" HorizontalAlignment="Center" Foreground="White" FontSize="20" RenderTransformOrigin="0.5,0.5">
+                            <Label.RenderTransform>
+                                <TransformGroup>
+                                    <ScaleTransform/>
+                                    <SkewTransform/>
+                                    <RotateTransform/>
+                                    <TranslateTransform Y="33"/>
+                                </TransformGroup>
+                            </Label.RenderTransform>
+                        </Label>
+                        <Label Content="{Binding SelectedDay.WeatherMeasurements[1].WindSpeed}" HorizontalAlignment="Center" Foreground="White" FontSize="20" RenderTransformOrigin="0.5,0.5">
+                            <Label.RenderTransform>
+                                <TransformGroup>
+                                    <ScaleTransform/>
+                                    <SkewTransform/>
+                                    <RotateTransform/>
+                                    <TranslateTransform Y="33"/>
+                                </TransformGroup>
+                            </Label.RenderTransform>
+                        </Label>
+                    </StackPanel>
+
+                    <StackPanel Grid.Row="0" Grid.Column="2" Background="#FF123163" Margin="5,5,5,-20">
+                        <Label Content="{Binding SelectedDay.Date, UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Center" Foreground="White" FontSize="20" RenderTransformOrigin="0.5,0.5">
+                            <Label.RenderTransform>
+                                <TransformGroup>
+                                    <ScaleTransform/>
+                                    <SkewTransform/>
+                                    <RotateTransform/>
+                                    <TranslateTransform Y="33"/>
+                                </TransformGroup>
+                            </Label.RenderTransform>
+                        </Label>
+                        <Label Content="{Binding SelectedDay.WeatherMeasurements[2].Time}" HorizontalAlignment="Center" Foreground="White" FontSize="20" RenderTransformOrigin="0.5,0.5">
+                            <Label.RenderTransform>
+                                <TransformGroup>
+                                    <ScaleTransform/>
+                                    <SkewTransform/>
+                                    <RotateTransform/>
+                                    <TranslateTransform Y="33"/>
+                                </TransformGroup>
+                            </Label.RenderTransform>
+                        </Label>
+                        <Image Source="{Binding SelectedDay.WeatherMeasurements[2].Image}" Width="100" Height="100" RenderTransformOrigin="0.5,0.5">
+                            <Image.RenderTransform>
+                                <TransformGroup>
+                                    <ScaleTransform/>
+                                    <SkewTransform/>
+                                    <RotateTransform/>
+                                    <TranslateTransform Y="33"/>
+                                </TransformGroup>
+                            </Image.RenderTransform>
+                        </Image>
+                        <Label Content="{Binding SelectedDay.WeatherMeasurements[2].TemperatureStr}" VerticalAlignment="Center" Foreground="White" HorizontalAlignment="Center" FontSize="36" RenderTransformOrigin="0.5,0.5">
+                            <Label.RenderTransform>
+                                <TransformGroup>
+                                    <ScaleTransform/>
+                                    <SkewTransform/>
+                                    <RotateTransform/>
+                                    <TranslateTransform Y="33"/>
+                                </TransformGroup>
+                            </Label.RenderTransform>
+                        </Label>
+                        <Label Content="{Binding SelectedDay.WeatherMeasurements[2].Description}" HorizontalAlignment="Center" Foreground="White" FontSize="20" RenderTransformOrigin="0.5,0.5">
+                            <Label.RenderTransform>
+                                <TransformGroup>
+                                    <ScaleTransform/>
+                                    <SkewTransform/>
+                                    <RotateTransform/>
+                                    <TranslateTransform Y="33"/>
+                                </TransformGroup>
+                            </Label.RenderTransform>
+                        </Label>
+                        <Label Content="{Binding SelectedDay.WeatherMeasurements[2].WindSpeed}" HorizontalAlignment="Center" Foreground="White" FontSize="20" RenderTransformOrigin="0.5,0.5">
+                            <Label.RenderTransform>
+                                <TransformGroup>
+                                    <ScaleTransform/>
+                                    <SkewTransform/>
+                                    <RotateTransform/>
+                                    <TranslateTransform Y="33"/>
+                                </TransformGroup>
+                            </Label.RenderTransform>
+                        </Label>
+                    </StackPanel>
+
+                    <StackPanel Grid.Row="0" Grid.Column="3" Background="#FF123163" Margin="5,5,5,-20">
+                        <Label Content="{Binding SelectedDay.Date, UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Center" Foreground="White" FontSize="20" RenderTransformOrigin="0.5,0.5">
+                            <Label.RenderTransform>
+                                <TransformGroup>
+                                    <ScaleTransform/>
+                                    <SkewTransform/>
+                                    <RotateTransform/>
+                                    <TranslateTransform Y="33"/>
+                                </TransformGroup>
+                            </Label.RenderTransform>
+                        </Label>
+                        <Label Content="{Binding SelectedDay.WeatherMeasurements[3].Time}" HorizontalAlignment="Center" Foreground="White" FontSize="20" RenderTransformOrigin="0.5,0.5">
+                            <Label.RenderTransform>
+                                <TransformGroup>
+                                    <ScaleTransform/>
+                                    <SkewTransform/>
+                                    <RotateTransform/>
+                                    <TranslateTransform Y="33"/>
+                                </TransformGroup>
+                            </Label.RenderTransform>
+                        </Label>
+                        <Image Source="{Binding SelectedDay.WeatherMeasurements[3].Image}" Width="100" Height="100" RenderTransformOrigin="0.5,0.5">
+                            <Image.RenderTransform>
+                                <TransformGroup>
+                                    <ScaleTransform/>
+                                    <SkewTransform/>
+                                    <RotateTransform/>
+                                    <TranslateTransform Y="33"/>
+                                </TransformGroup>
+                            </Image.RenderTransform>
+                        </Image>
+                        <Label Content="{Binding SelectedDay.WeatherMeasurements[3].TemperatureStr}" VerticalAlignment="Center" Foreground="White" HorizontalAlignment="Center" FontSize="36" RenderTransformOrigin="0.5,0.5">
+                            <Label.RenderTransform>
+                                <TransformGroup>
+                                    <ScaleTransform/>
+                                    <SkewTransform/>
+                                    <RotateTransform/>
+                                    <TranslateTransform Y="33"/>
+                                </TransformGroup>
+                            </Label.RenderTransform>
+                        </Label>
+                        <Label Content="{Binding SelectedDay.WeatherMeasurements[3].Description}" HorizontalAlignment="Center" Foreground="White" FontSize="20" RenderTransformOrigin="0.5,0.5">
+                            <Label.RenderTransform>
+                                <TransformGroup>
+                                    <ScaleTransform/>
+                                    <SkewTransform/>
+                                    <RotateTransform/>
+                                    <TranslateTransform Y="33"/>
+                                </TransformGroup>
+                            </Label.RenderTransform>
+                        </Label>
+                        <Label Content="{Binding SelectedDay.WeatherMeasurements[3].WindSpeed}" HorizontalAlignment="Center" Foreground="White" FontSize="20" RenderTransformOrigin="0.5,0.5">
+                            <Label.RenderTransform>
+                                <TransformGroup>
+                                    <ScaleTransform/>
+                                    <SkewTransform/>
+                                    <RotateTransform/>
+                                    <TranslateTransform Y="33"/>
+                                </TransformGroup>
+                            </Label.RenderTransform>
+                        </Label>
+                    </StackPanel>
+
+                    <StackPanel Grid.Row="0" Grid.Column="4" Background="#FF123163" Margin="5,5,5,-20">
+                        <Label Content="{Binding SelectedDay.Date, UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Center" Foreground="White" FontSize="20" RenderTransformOrigin="0.5,0.5">
+                            <Label.RenderTransform>
+                                <TransformGroup>
+                                    <ScaleTransform/>
+                                    <SkewTransform/>
+                                    <RotateTransform/>
+                                    <TranslateTransform Y="33"/>
+                                </TransformGroup>
+                            </Label.RenderTransform>
+                        </Label>
+                        <Label Content="{Binding SelectedDay.WeatherMeasurements[4].Time}" HorizontalAlignment="Center" Foreground="White" FontSize="20" RenderTransformOrigin="0.5,0.5">
+                            <Label.RenderTransform>
+                                <TransformGroup>
+                                    <ScaleTransform/>
+                                    <SkewTransform/>
+                                    <RotateTransform/>
+                                    <TranslateTransform Y="33"/>
+                                </TransformGroup>
+                            </Label.RenderTransform>
+                        </Label>
+                        <Image Source="{Binding SelectedDay.WeatherMeasurements[4].Image}" Width="100" Height="100" RenderTransformOrigin="0.5,0.5">
+                            <Image.RenderTransform>
+                                <TransformGroup>
+                                    <ScaleTransform/>
+                                    <SkewTransform/>
+                                    <RotateTransform/>
+                                    <TranslateTransform Y="33"/>
+                                </TransformGroup>
+                            </Image.RenderTransform>
+                        </Image>
+                        <Label Content="{Binding SelectedDay.WeatherMeasurements[4].TemperatureStr}" VerticalAlignment="Center" Foreground="White" HorizontalAlignment="Center" FontSize="36" RenderTransformOrigin="0.5,0.5">
+                            <Label.RenderTransform>
+                                <TransformGroup>
+                                    <ScaleTransform/>
+                                    <SkewTransform/>
+                                    <RotateTransform/>
+                                    <TranslateTransform Y="33"/>
+                                </TransformGroup>
+                            </Label.RenderTransform>
+                        </Label>
+                        <Label Content="{Binding SelectedDay.WeatherMeasurements[4].Description}" HorizontalAlignment="Center" Foreground="White" FontSize="20" RenderTransformOrigin="0.5,0.5">
+                            <Label.RenderTransform>
+                                <TransformGroup>
+                                    <ScaleTransform/>
+                                    <SkewTransform/>
+                                    <RotateTransform/>
+                                    <TranslateTransform Y="33"/>
+                                </TransformGroup>
+                            </Label.RenderTransform>
+                        </Label>
+                        <Label Content="{Binding SelectedDay.WeatherMeasurements[4].WindSpeed}" HorizontalAlignment="Center" Foreground="White" FontSize="20" RenderTransformOrigin="0.5,0.5">
+                            <Label.RenderTransform>
+                                <TransformGroup>
+                                    <ScaleTransform/>
+                                    <SkewTransform/>
+                                    <RotateTransform/>
+                                    <TranslateTransform Y="33"/>
+                                </TransformGroup>
+                            </Label.RenderTransform>
+                        </Label>
+                    </StackPanel>
+
+                    <StackPanel Grid.Row="0" Grid.Column="5" Background="#FF123163" Margin="5,5,5,-20">
+                        <Label Content="{Binding SelectedDay.Date, UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Center" Foreground="White" FontSize="20" RenderTransformOrigin="0.5,0.5">
+                            <Label.RenderTransform>
+                                <TransformGroup>
+                                    <ScaleTransform/>
+                                    <SkewTransform/>
+                                    <RotateTransform/>
+                                    <TranslateTransform Y="33"/>
+                                </TransformGroup>
+                            </Label.RenderTransform>
+                        </Label>
+                        <Label Content="{Binding SelectedDay.WeatherMeasurements[5].Time}" HorizontalAlignment="Center" Foreground="White" FontSize="20" RenderTransformOrigin="0.5,0.5">
+                            <Label.RenderTransform>
+                                <TransformGroup>
+                                    <ScaleTransform/>
+                                    <SkewTransform/>
+                                    <RotateTransform/>
+                                    <TranslateTransform Y="33"/>
+                                </TransformGroup>
+                            </Label.RenderTransform>
+                        </Label>
+                        <Image Source="{Binding SelectedDay.WeatherMeasurements[5].Image}" Width="100" Height="100" RenderTransformOrigin="0.5,0.5">
+                            <Image.RenderTransform>
+                                <TransformGroup>
+                                    <ScaleTransform/>
+                                    <SkewTransform/>
+                                    <RotateTransform/>
+                                    <TranslateTransform Y="33"/>
+                                </TransformGroup>
+                            </Image.RenderTransform>
+                        </Image>
+                        <Label Content="{Binding SelectedDay.WeatherMeasurements[5].TemperatureStr}" VerticalAlignment="Center" Foreground="White" HorizontalAlignment="Center" FontSize="36" RenderTransformOrigin="0.5,0.5">
+                            <Label.RenderTransform>
+                                <TransformGroup>
+                                    <ScaleTransform/>
+                                    <SkewTransform/>
+                                    <RotateTransform/>
+                                    <TranslateTransform Y="33"/>
+                                </TransformGroup>
+                            </Label.RenderTransform>
+                        </Label>
+                        <Label Content="{Binding SelectedDay.WeatherMeasurements[5].Description}" HorizontalAlignment="Center" Foreground="White" FontSize="20" RenderTransformOrigin="0.5,0.5">
+                            <Label.RenderTransform>
+                                <TransformGroup>
+                                    <ScaleTransform/>
+                                    <SkewTransform/>
+                                    <RotateTransform/>
+                                    <TranslateTransform Y="33"/>
+                                </TransformGroup>
+                            </Label.RenderTransform>
+                        </Label>
+                        <Label Content="{Binding SelectedDay.WeatherMeasurements[5].WindSpeed}" HorizontalAlignment="Center" Foreground="White" FontSize="20" RenderTransformOrigin="0.5,0.5">
+                            <Label.RenderTransform>
+                                <TransformGroup>
+                                    <ScaleTransform/>
+                                    <SkewTransform/>
+                                    <RotateTransform/>
+                                    <TranslateTransform Y="33"/>
+                                </TransformGroup>
+                            </Label.RenderTransform>
+                        </Label>
+                    </StackPanel>
+
+                    <StackPanel Grid.Row="0" Grid.Column="6" Background="#FF123163" Margin="5,5,5,-20">
+                        <Label Content="{Binding SelectedDay.Date, UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Center" Foreground="White" FontSize="20" RenderTransformOrigin="0.5,0.5">
+                            <Label.RenderTransform>
+                                <TransformGroup>
+                                    <ScaleTransform/>
+                                    <SkewTransform/>
+                                    <RotateTransform/>
+                                    <TranslateTransform Y="33"/>
+                                </TransformGroup>
+                            </Label.RenderTransform>
+                        </Label>
+                        <Label Content="{Binding SelectedDay.WeatherMeasurements[6].Time}" HorizontalAlignment="Center" Foreground="White" FontSize="20" RenderTransformOrigin="0.5,0.5">
+                            <Label.RenderTransform>
+                                <TransformGroup>
+                                    <ScaleTransform/>
+                                    <SkewTransform/>
+                                    <RotateTransform/>
+                                    <TranslateTransform Y="33"/>
+                                </TransformGroup>
+                            </Label.RenderTransform>
+                        </Label>
+                        <Image Source="{Binding SelectedDay.WeatherMeasurements[6].Image}" Width="100" Height="100" RenderTransformOrigin="0.5,0.5">
+                            <Image.RenderTransform>
+                                <TransformGroup>
+                                    <ScaleTransform/>
+                                    <SkewTransform/>
+                                    <RotateTransform/>
+                                    <TranslateTransform Y="33"/>
+                                </TransformGroup>
+                            </Image.RenderTransform>
+                        </Image>
+                        <Label Content="{Binding SelectedDay.WeatherMeasurements[6].TemperatureStr}" VerticalAlignment="Center" Foreground="White" HorizontalAlignment="Center" FontSize="36" RenderTransformOrigin="0.5,0.5">
+                            <Label.RenderTransform>
+                                <TransformGroup>
+                                    <ScaleTransform/>
+                                    <SkewTransform/>
+                                    <RotateTransform/>
+                                    <TranslateTransform Y="33"/>
+                                </TransformGroup>
+                            </Label.RenderTransform>
+                        </Label>
+                        <Label Content="{Binding SelectedDay.WeatherMeasurements[6].Description}" HorizontalAlignment="Center" Foreground="White" FontSize="20" RenderTransformOrigin="0.5,0.5">
+                            <Label.RenderTransform>
+                                <TransformGroup>
+                                    <ScaleTransform/>
+                                    <SkewTransform/>
+                                    <RotateTransform/>
+                                    <TranslateTransform Y="33"/>
+                                </TransformGroup>
+                            </Label.RenderTransform>
+                        </Label>
+                        <Label Content="{Binding SelectedDay.WeatherMeasurements[6].WindSpeed}" HorizontalAlignment="Center" Foreground="White" FontSize="20" RenderTransformOrigin="0.5,0.5">
+                            <Label.RenderTransform>
+                                <TransformGroup>
+                                    <ScaleTransform/>
+                                    <SkewTransform/>
+                                    <RotateTransform/>
+                                    <TranslateTransform Y="33"/>
+                                </TransformGroup>
+                            </Label.RenderTransform>
+                        </Label>
+                    </StackPanel>
+
+                    <StackPanel Grid.Row="0" Grid.Column="7" Background="#FF123163" Margin="5,5,5,-20">
+                        <Label Content="{Binding SelectedDay.Date, UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Center" Foreground="White" FontSize="20" RenderTransformOrigin="0.5,0.5">
+                            <Label.RenderTransform>
+                                <TransformGroup>
+                                    <ScaleTransform/>
+                                    <SkewTransform/>
+                                    <RotateTransform/>
+                                    <TranslateTransform Y="33"/>
+                                </TransformGroup>
+                            </Label.RenderTransform>
+                        </Label>
+                        <Label Content="{Binding SelectedDay.WeatherMeasurements[7].Time}" HorizontalAlignment="Center" Foreground="White" FontSize="20" RenderTransformOrigin="0.5,0.5">
+                            <Label.RenderTransform>
+                                <TransformGroup>
+                                    <ScaleTransform/>
+                                    <SkewTransform/>
+                                    <RotateTransform/>
+                                    <TranslateTransform Y="33"/>
+                                </TransformGroup>
+                            </Label.RenderTransform>
+                        </Label>
+                        <Image Source="{Binding SelectedDay.WeatherMeasurements[7].Image}" Width="100" Height="100" RenderTransformOrigin="0.5,0.5">
+                            <Image.RenderTransform>
+                                <TransformGroup>
+                                    <ScaleTransform/>
+                                    <SkewTransform/>
+                                    <RotateTransform/>
+                                    <TranslateTransform Y="33"/>
+                                </TransformGroup>
+                            </Image.RenderTransform>
+                        </Image>
+                        <Label Content="{Binding SelectedDay.WeatherMeasurements[7].TemperatureStr}" VerticalAlignment="Center" Foreground="White" HorizontalAlignment="Center" FontSize="36" RenderTransformOrigin="0.5,0.5">
+                            <Label.RenderTransform>
+                                <TransformGroup>
+                                    <ScaleTransform/>
+                                    <SkewTransform/>
+                                    <RotateTransform/>
+                                    <TranslateTransform Y="33"/>
+                                </TransformGroup>
+                            </Label.RenderTransform>
+                        </Label>
+                        <Label Content="{Binding SelectedDay.WeatherMeasurements[7].Description}" HorizontalAlignment="Center" Foreground="White" FontSize="20" RenderTransformOrigin="0.5,0.5">
+                            <Label.RenderTransform>
+                                <TransformGroup>
+                                    <ScaleTransform/>
+                                    <SkewTransform/>
+                                    <RotateTransform/>
+                                    <TranslateTransform Y="33"/>
+                                </TransformGroup>
+                            </Label.RenderTransform>
+                        </Label>
+                        <Label Content="{Binding SelectedDay.WeatherMeasurements[7].WindSpeed}" HorizontalAlignment="Center" Foreground="White" FontSize="20" RenderTransformOrigin="0.5,0.5">
+                            <Label.RenderTransform>
+                                <TransformGroup>
+                                    <ScaleTransform/>
+                                    <SkewTransform/>
+                                    <RotateTransform/>
+                                    <TranslateTransform Y="33"/>
+                                </TransformGroup>
+                            </Label.RenderTransform>
+                        </Label>
+                    </StackPanel>
+
+                </Grid>
+
+            </DockPanel>
         </Viewbox>
 
 

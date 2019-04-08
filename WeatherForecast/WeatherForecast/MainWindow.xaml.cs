@@ -27,8 +27,6 @@ namespace WeatherForecast
     {
         WeatherDataLoader loader = new WeatherDataLoader();
 
-        //public WeatherData CurrentLocationData { get; set; }
-
         public void keyUpSearch(object sender, KeyEventArgs e)
         {
             loader.setCounterToZero();
@@ -49,10 +47,9 @@ namespace WeatherForecast
             this.Height = (System.Windows.SystemParameters.PrimaryScreenHeight * 0.7);
             this.Width = (System.Windows.SystemParameters.PrimaryScreenWidth * 0.7);
             loader.refreshWeatherData("3194360");
+            loader.SelectedDay = loader.Weather.DayForecasts[0];
             loader.readCitiesFromJson();
             this.DataContext = loader;
-           
-
         }
 
         private void CurrentWeatherInfo_Loaded(object sender, RoutedEventArgs e)
@@ -71,6 +68,58 @@ namespace WeatherForecast
                 listbox.Visibility = Visibility.Visible;
             }
             
+        }
+
+        private void showSingleDayForecast()
+        {
+            this.fiveDayForecast.Visibility = Visibility.Collapsed;
+            this.singleDayForecast.Visibility = Visibility.Visible;
+        }
+
+        private void showFiveDayForecast()
+        {
+            this.singleDayForecast.Visibility = Visibility.Collapsed;
+            this.fiveDayForecast.Visibility = Visibility.Visible;
+        }
+
+        private void firstDayForecast(object sender, RoutedEventArgs e)
+        {
+            loader.IndexSelectedDay = 0;
+            loader.SelectedDay = loader.Weather.DayForecasts[loader.IndexSelectedDay];
+            showSingleDayForecast();
+        }
+
+        private void secondDayForecast(object sender, RoutedEventArgs e)
+        {
+            loader.IndexSelectedDay = 1;
+            loader.SelectedDay = loader.Weather.DayForecasts[loader.IndexSelectedDay];
+            showSingleDayForecast();
+        }
+
+        private void thirdDayForecast(object sender, RoutedEventArgs e)
+        {
+            loader.IndexSelectedDay = 2;
+            loader.SelectedDay = loader.Weather.DayForecasts[loader.IndexSelectedDay];
+            showSingleDayForecast();
+        }
+
+        private void fourthDayForecast(object sender, RoutedEventArgs e)
+        {
+            loader.IndexSelectedDay = 3;
+            loader.SelectedDay = loader.Weather.DayForecasts[loader.IndexSelectedDay];
+            showSingleDayForecast();
+        }
+
+        private void fifthDayForecast(object sender, RoutedEventArgs e)
+        {
+            loader.IndexSelectedDay = 4;
+            loader.SelectedDay = loader.Weather.DayForecasts[loader.IndexSelectedDay];
+            showSingleDayForecast();
+        }
+
+        private void exitDetailView(object sender, RoutedEventArgs e)
+        {
+            showFiveDayForecast();
         }
     }
 }

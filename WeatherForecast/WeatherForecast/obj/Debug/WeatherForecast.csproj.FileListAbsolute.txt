@@ -51,7 +51,6 @@ C:\Users\Vaso\Desktop\Fakultet\Interakcija_Covjek_Racunar\Weather-Forecast\Weath
 C:\Users\Vaso\Desktop\Fakultet\Interakcija_Covjek_Racunar\Weather-Forecast\WeatherForecast\WeatherForecast\obj\Debug\CurrentWeatherInfo.g.cs
 C:\Users\Vaso\Desktop\Fakultet\Interakcija_Covjek_Racunar\Weather-Forecast\WeatherForecast\WeatherForecast\obj\Debug\MainWindow.g.cs
 C:\Users\Vaso\Desktop\Fakultet\Interakcija_Covjek_Racunar\Weather-Forecast\WeatherForecast\WeatherForecast\obj\Debug\App.g.cs
-C:\Users\Vaso\Desktop\Fakultet\Interakcija_Covjek_Racunar\Weather-Forecast\WeatherForecast\WeatherForecast\obj\Debug\GeneratedInternalTypeHelper.g.cs
 C:\Users\Vaso\Desktop\Fakultet\Interakcija_Covjek_Racunar\Weather-Forecast\WeatherForecast\WeatherForecast\obj\Debug\WeatherForecast_MarkupCompile.cache
 C:\Users\Vaso\Desktop\Fakultet\Interakcija_Covjek_Racunar\Weather-Forecast\WeatherForecast\WeatherForecast\obj\Debug\WeatherForecast_MarkupCompile.lref
 C:\Users\Vaso\Desktop\Fakultet\Interakcija_Covjek_Racunar\Weather-Forecast\WeatherForecast\WeatherForecast\obj\Debug\CurrentWeatherInfo.baml

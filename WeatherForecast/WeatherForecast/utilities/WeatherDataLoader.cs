@@ -17,6 +17,22 @@ namespace WeatherForecast.utilities
 {
      public class WeatherDataLoader : INotifyPropertyChanged
     {
+        public int IndexSelectedDay { get; set; } = 0;
+
+        private DayForecast _selectedDay;
+
+        public DayForecast SelectedDay
+        {
+            get { return _selectedDay; }
+            set
+            {
+                if (_selectedDay != value)
+                {
+                    _selectedDay = value;
+                    OnPropertyChanged("SelectedDay");
+                }
+            }
+        }
 
         public const string cityListPath = @"../../resources/city_list.json";
 
@@ -119,7 +135,7 @@ namespace WeatherForecast.utilities
             retVal = JsonConvert.DeserializeObject<WeatherData>(jsonData);
             Weather = new ViewData();
             Weather.AdaptAPI(retVal);
-
+            SelectedDay = Weather.DayForecasts[IndexSelectedDay];
         }
 
         public void readCitiesFromJson()

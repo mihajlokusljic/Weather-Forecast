@@ -49,6 +49,7 @@ namespace WeatherForecast.model
                 return "resources/images/misty.png";
             }
         }
+
         public void AdaptAPI(WeatherData Weather)
         {
             this.CurrentWeatherData = new CurrentWeather();
@@ -81,8 +82,9 @@ namespace WeatherForecast.model
                     Time = measurement.dt_txt.ToString("HH:mm"),
                     Temperature = measurement.main.temp,
                     TemperatureStr = $"{measurement.main.temp} °C",
-                    Image = "?",
-                    WindSpeed = $"{measurement.wind.speed} m/s?"
+                    Description = measurement.weather[0].description,
+                    Image = getIconPath(measurement.weather[0]),
+                    WindSpeed = $"Wind speed: {measurement.wind.speed} m/s"
                 };
                 if(neededForFirst > 0)
                 {
@@ -144,6 +146,7 @@ namespace WeatherForecast.model
         public double Temperature { get; set; }
         public string Image { get; set; }
         public string WindSpeed { get; set; }
+        public string Description { get; set; }
     }
 
     public class DayForecast 
