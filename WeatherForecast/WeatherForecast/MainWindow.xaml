@@ -48,9 +48,11 @@
             ItemTemplate="{StaticResource AutoCompleteBoxItemTemplate}"
             x:Name="Search" KeyUp="keyUpSearch" SelectionChanged="selectChangedSearch"
             />
-
-        <Button Grid.Row="0" Grid.Column="1" Width="40" Height="40" Margin="5" HorizontalAlignment="Left" Content="{StaticResource refreshIcon}" Background="Transparent" BorderBrush="Transparent" ToolTip="Refresh data"/>
-        <StackPanel Grid.Row="0" Grid.Column="2" Orientation="Horizontal" HorizontalAlignment="Right">
+        <StackPanel Grid.Row="0" Grid.Column="1" Orientation="Horizontal">
+            <Button Width="40" Height="40" Margin="5" HorizontalAlignment="Left" Content="{StaticResource refreshIcon}" Background="Transparent" BorderBrush="Transparent" ToolTip="Refresh data" Click="Refresh_Click"/>
+            <Label Foreground="White" Content="{Binding RefreshMessage}" VerticalAlignment="Bottom" FontSize="18"></Label>
+        </StackPanel>
+                <StackPanel Grid.Row="0" Grid.Column="2" Orientation="Horizontal" HorizontalAlignment="Right">
             <Button Width="40" Height="40" Margin="3" Content="{StaticResource bookmarkedIcon}" Background="Transparent" BorderBrush="Transparent" ToolTip="Browse bookmarked locations" Click="Favourites_Click"/>
             <Button Grid.Row="0" Grid.Column="2" Width="40" Height="40" Margin="3" Content="{StaticResource historyIcon}" Background="Transparent" BorderBrush="Transparent" ToolTip="Browse search history" Click="History_Click"/>
 

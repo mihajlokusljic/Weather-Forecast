@@ -36,6 +36,20 @@ namespace WeatherForecast.utilities
 
         public const string cityListPath = @"../../resources/city_list.json";
         public const string favCitiesListPath = @"../../resources/favourites.json";
+        private string refreshMessage;
+        public string RefreshMessage
+        {
+            get { return refreshMessage; }
+    
+            set {
+                if (value != refreshMessage)
+                {
+                    refreshMessage = value;
+                    OnPropertyChanged("RefreshMessage");
+                }
+            }
+                
+        }
 
         public CityListSearch cityListSearch;
         public CityListSearch favCityListSearch;

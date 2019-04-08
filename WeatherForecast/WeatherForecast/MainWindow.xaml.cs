@@ -50,10 +50,12 @@ namespace WeatherForecast
             InitializeComponent();
             this.Height = (System.Windows.SystemParameters.PrimaryScreenHeight * 0.7);
             this.Width = (System.Windows.SystemParameters.PrimaryScreenWidth * 0.7);
-            loader.refreshWeatherData("3194360");
-            loader.SelectedDay = loader.Weather.DayForecasts[0];
+            DateTime dt = DateTime.Now;
+            loader.RefreshMessage = "Last time updated: " + dt.ToString();
             loader.readCitiesFromJson();
             loader.defaultSelectedCity();
+            loader.refreshWeatherData(loader.SelectedCity.id.ToString());
+            loader.SelectedDay = loader.Weather.DayForecasts[0];
             loader.loadFavouriteCities();
             CheckFavourite();
             this.DataContext = loader;
@@ -118,7 +120,17 @@ namespace WeatherForecast
             favOff.Visibility = Visibility.Visible;
             if (loader.SelectedCity != null)
             {
+                int id = loader.selectedCity.id;
+                string name = loader.selectedCity.name;
+                string country = loader.selectedCity.country;
+
                 loader.favouriteCities.Remove(loader.SelectedCity);
+
+                loader.SelectedCity = new CitySearch();
+                loader.SelectedCity.id = id;
+                loader.SelectedCity.name = name;
+                loader.SelectedCity.country = country;
+
                 SaveFavourites();
 
             }
@@ -196,6 +208,14 @@ namespace WeatherForecast
         private void exitDetailView(object sender, RoutedEventArgs e)
         {
             showFiveDayForecast();
+        }
+
+        private void Refresh_Click(object sender, RoutedEventArgs e)
+        {
+            loader.refreshWeatherData(loader.SelectedCity.id.ToString());
+            loader.OnPropertyChanged("Weather");
+            DateTime dt = DateTime.Now;
+            loader.RefreshMessage = "Last time updated: " + dt.ToString();
         }
     }
 }
