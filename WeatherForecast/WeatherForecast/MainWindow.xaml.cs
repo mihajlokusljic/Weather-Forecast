@@ -59,5 +59,18 @@ namespace WeatherForecast
         {
 
         }
+
+        private void History_Click(object sender, RoutedEventArgs e)
+        {
+            if (listbox.Visibility == Visibility.Visible)
+            {
+                listbox.Visibility = Visibility.Collapsed;
+            }
+            else
+            {
+                listbox.Visibility = Visibility.Visible;
+            }
+            
+        }
     }
 }

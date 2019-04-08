@@ -11,6 +11,7 @@ using System.Windows.Controls;
 using System.Net;
 
 using WeatherForecast.model;
+using System.Collections.ObjectModel;
 
 namespace WeatherForecast.utilities
 {
@@ -20,11 +21,21 @@ namespace WeatherForecast.utilities
         public const string cityListPath = @"../../resources/city_list.json";
 
         public CityListSearch cityListSearch;
+        public ObservableCollection<CitySearch> historyList = new ObservableCollection<CitySearch>();
         public IEnumerable<CitySearch> Cities
         {
             get { return loadCities(); }
         }
         
+        public IEnumerable<CitySearch> HistoryList
+        {
+            get
+            {
+                return historyList;
+            }
+            
+        }
+
         public CitySearch selectedCity;
         public string URLI;
 
@@ -141,9 +152,14 @@ namespace WeatherForecast.utilities
             }
             URLI = @"http://api.openweathermap.org/data/2.5/forecast?id=" + SelectedCity.id +
                 "&APPID=53945fd3404ab75b8b8c7e076d3cd32f";
+            if (!historyList.Contains(SelectedCity))
+            {
+                historyList.Add(SelectedCity);
+            }
             refreshWeatherData(SelectedCity.id.ToString());
             OnPropertyChanged("Weather");
         }
+        
 
     }
 }
