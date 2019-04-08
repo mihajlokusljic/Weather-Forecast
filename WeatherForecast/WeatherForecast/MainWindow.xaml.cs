@@ -13,8 +13,9 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
-using WeatherForecast.model;
+using System.Threading;
 
+using WeatherForecast.model;
 using WeatherForecast.utilities;
 using System.ComponentModel;
 using System.IO;
@@ -28,6 +29,7 @@ namespace WeatherForecast
     public partial class MainWindow : Window
     {
         WeatherDataLoader loader = new WeatherDataLoader();
+        private Thread refresher = new Thread(new ParameterizedThreadStart(autoRefresh));
 
         public void keyUpSearch(object sender, KeyEventArgs e)
         {
@@ -59,6 +61,7 @@ namespace WeatherForecast
             loader.RefreshMessage = "Last time updated: " + dt.ToString();
             loader.loadFavouriteCities();
             CheckFavourite();
+            refresher.Start(loader);
             this.DataContext = loader;
         }
 
@@ -217,5 +220,22 @@ namespace WeatherForecast
             DateTime dt = DateTime.Now;
             loader.RefreshMessage = "Last time updated: " + dt.ToString();
         }
+
+        public static void autoRefresh(Object obj)
+        {
+            WeatherDataLoader loader = obj as WeatherDataLoader;
+            while (true)
+            {
+                Thread.Sleep(5 * 1000);
+                if (loader.SelectedCity != null)
+                {
+                    loader.refreshWeatherData(loader.SelectedCity.id.ToString());
+                    loader.OnPropertyChanged("Weather");
+                    loader.RefreshMessage = "Last time updated: " + DateTime.Now.ToString();
+                }
+            }
+          
+        }
+
     }
 }

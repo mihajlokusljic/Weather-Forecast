@@ -33,9 +33,10 @@
         </Grid.RowDefinitions>
 
         <Grid.ColumnDefinitions>
-            <ColumnDefinition/>
-            <ColumnDefinition Width="1.2*"/>
-            <ColumnDefinition/>
+            <ColumnDefinition Width="248*"/>
+            <ColumnDefinition Width="31*"/>
+            <ColumnDefinition Width="335*"/>
+            <ColumnDefinition Width="279*"/>
         </Grid.ColumnDefinitions>
 
         <toolkit:AutoCompleteBox 
@@ -48,25 +49,25 @@
             Background="#FF1A273D"
             ItemFilter="{Binding CityFilter}"
             ItemTemplate="{StaticResource AutoCompleteBoxItemTemplate}"
-            x:Name="Search" KeyUp="keyUpSearch" SelectionChanged="selectChangedSearch"
+            x:Name="Search" KeyUp="keyUpSearch" SelectionChanged="selectChangedSearch" Grid.ColumnSpan="2" Margin="0,9,0.2,8.6"
             />
-        <StackPanel Grid.Row="0" Grid.Column="1" Orientation="Horizontal">
+        <StackPanel Grid.Row="0" Grid.Column="1" Orientation="Horizontal" Grid.ColumnSpan="2" Margin="31.228,0,0.4,156.4" Grid.RowSpan="2">
             <Button Width="40" Height="40" Margin="5" HorizontalAlignment="Left" Content="{StaticResource refreshIcon}" Background="Transparent" BorderBrush="Transparent" ToolTip="Refresh data" Click="Refresh_Click"/>
             <Label Foreground="White" Content="{Binding RefreshMessage}" VerticalAlignment="Bottom" FontSize="18"></Label>
         </StackPanel>
-                <StackPanel Grid.Row="0" Grid.Column="2" Orientation="Horizontal" HorizontalAlignment="Right">
+        <StackPanel Grid.Row="0" Grid.Column="3" Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,0,-0.4,156.4" Grid.RowSpan="2">
             <Button Width="40" Height="40" Margin="3" Content="{StaticResource bookmarkedIcon}" Background="Transparent" BorderBrush="Transparent" ToolTip="Browse bookmarked locations" Click="Favourites_Click"/>
             <Button Grid.Row="0" Grid.Column="2" Width="40" Height="40" Margin="3" Content="{StaticResource historyIcon}" Background="Transparent" BorderBrush="Transparent" ToolTip="Browse search history" Click="History_Click"/>
 
         </StackPanel>
-        <ListBox Grid.Row ="1" Grid.Column="2" Visibility="Collapsed" FontSize="20" Foreground="White" Background="#FF1A273D" x:Name="listbox" Width="200" Height="Auto" ItemsSource="{Binding HistoryList}" 
-                 SelectedItem ="{Binding SelectedCity}" DisplayMemberPath="name" HorizontalAlignment="Right" SelectionChanged="selectChangedSearch">
+        <ListBox Grid.Row ="1" Grid.Column="3" Visibility="Collapsed" FontSize="20" Foreground="White" Background="#FF1A273D" x:Name="listbox" Width="200" Height="Auto" ItemsSource="{Binding HistoryList}" 
+                 SelectedItem ="{Binding SelectedCity}" DisplayMemberPath="name" HorizontalAlignment="Right" SelectionChanged="selectChangedSearch" Margin="0,0.4,-0.4,0.4">
         </ListBox>
-        <ListBox Grid.Row ="1" Grid.Column="2" Visibility="Collapsed" FontSize="20" Foreground="White" Background="#FF1A273D" x:Name="listboxFav" Width="200" Height="Auto" ItemsSource="{Binding FavouriteCities}" 
-                 SelectedItem ="{Binding SelectedCity}" DisplayMemberPath="name" HorizontalAlignment="Right" SelectionChanged="selectChangedSearch">
+        <ListBox Grid.Row ="1" Grid.Column="3" Visibility="Collapsed" FontSize="20" Foreground="White" Background="#FF1A273D" x:Name="listboxFav" Width="200" Height="Auto" ItemsSource="{Binding FavouriteCities}" 
+                 SelectedItem ="{Binding SelectedCity}" DisplayMemberPath="name" HorizontalAlignment="Right" SelectionChanged="selectChangedSearch" Margin="0,0.4,-0.4,0.4">
         </ListBox>
 
-        <Viewbox Grid.Row="1" Grid.Column="1" Stretch="Uniform" HorizontalAlignment="Center">
+        <Viewbox Grid.Row="1" Grid.Column="2" Stretch="Uniform" HorizontalAlignment="Center" Margin="88.8,0.4,89.4,0.4">
             <Grid>
                 <Grid.RowDefinitions>
                     <RowDefinition/>
@@ -89,7 +90,7 @@
         </Viewbox>
 
         <!--Five day forecast-->
-        <Viewbox Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="3">
+        <Viewbox Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="4" Margin="0,156.4,-0.4,-0.2" Grid.RowSpan="2">
             <Grid Name="fiveDayForecast" Visibility="Visible">
                 <Grid.RowDefinitions>
                     <RowDefinition/>
@@ -166,7 +167,7 @@
         </Viewbox>
 
         <!--Selected day forecast-->
-        <Viewbox Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="3">
+        <Viewbox Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="4" Margin="0,156.4,-0.4,-0.2" Grid.RowSpan="2">
             <DockPanel Visibility="Collapsed" Name="singleDayForecast" VerticalAlignment="Stretch" Height="428" RenderTransformOrigin="0.5,0.5" Margin="10,0">
                 <DockPanel.RenderTransform>
                     <TransformGroup>
@@ -258,7 +259,7 @@
                             </Label.RenderTransform>
                         </Label>
                     </StackPanel>
-                    
+
                     <StackPanel Grid.Row="0" Grid.Column="1" Background="#FF123163" Margin="5,5,5,-20">
                         <Label Content="{Binding SelectedDay.Date, UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Center" Foreground="White" FontSize="20" RenderTransformOrigin="0.5,0.5">
                             <Label.RenderTransform>

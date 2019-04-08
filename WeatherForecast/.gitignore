@@ -3,3 +3,4 @@
 #binary files
 WeatherForecast/bin/*
 WeatherForecast/obj/*
+WeatherForecast/obj/Debug/*
