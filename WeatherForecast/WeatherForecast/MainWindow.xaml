@@ -17,6 +17,7 @@
         <DataTemplate x:Key="AutoCompleteBoxItemTemplate">
             <StackPanel Orientation="Horizontal">
                 <Label Content="{Binding name}"
+                       Foreground="White"
                         />
                 <Label Content="{Binding country}"
                        FontStyle="Italic"
@@ -43,7 +44,8 @@
             ValueMemberPath="name"
             FontSize="20"
             VerticalAlignment="Center"
-
+            Foreground="White"
+            Background="#FF1A273D"
             ItemFilter="{Binding CityFilter}"
             ItemTemplate="{StaticResource AutoCompleteBoxItemTemplate}"
             x:Name="Search" KeyUp="keyUpSearch" SelectionChanged="selectChangedSearch"
@@ -57,10 +59,10 @@
             <Button Grid.Row="0" Grid.Column="2" Width="40" Height="40" Margin="3" Content="{StaticResource historyIcon}" Background="Transparent" BorderBrush="Transparent" ToolTip="Browse search history" Click="History_Click"/>
 
         </StackPanel>
-        <ListBox Grid.Row ="1" Grid.Column="2" Visibility="Collapsed" Foreground="White" Background="#FF1A273D" x:Name="listbox" Width="200" Height="Auto" ItemsSource="{Binding HistoryList}" 
+        <ListBox Grid.Row ="1" Grid.Column="2" Visibility="Collapsed" FontSize="20" Foreground="White" Background="#FF1A273D" x:Name="listbox" Width="200" Height="Auto" ItemsSource="{Binding HistoryList}" 
                  SelectedItem ="{Binding SelectedCity}" DisplayMemberPath="name" HorizontalAlignment="Right" SelectionChanged="selectChangedSearch">
         </ListBox>
-        <ListBox Grid.Row ="1" Grid.Column="2" Visibility="Collapsed" Foreground="White" Background="#FF1A273D" x:Name="listboxFav" Width="200" Height="Auto" ItemsSource="{Binding FavouriteCities}" 
+        <ListBox Grid.Row ="1" Grid.Column="2" Visibility="Collapsed" FontSize="20" Foreground="White" Background="#FF1A273D" x:Name="listboxFav" Width="200" Height="Auto" ItemsSource="{Binding FavouriteCities}" 
                  SelectedItem ="{Binding SelectedCity}" DisplayMemberPath="name" HorizontalAlignment="Right" SelectionChanged="selectChangedSearch">
         </ListBox>
 

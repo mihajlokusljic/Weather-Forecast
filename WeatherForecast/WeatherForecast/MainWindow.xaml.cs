@@ -212,8 +212,12 @@ namespace WeatherForecast
 
         private void Refresh_Click(object sender, RoutedEventArgs e)
         {
-            loader.refreshWeatherData(loader.SelectedCity.id.ToString());
-            loader.OnPropertyChanged("Weather");
+            if (loader.SelectedCity != null)
+            {
+                loader.refreshWeatherData(loader.SelectedCity.id.ToString());
+                loader.OnPropertyChanged("Weather");
+            }            
+
             DateTime dt = DateTime.Now;
             loader.RefreshMessage = "Last time updated: " + dt.ToString();
         }
