@@ -2,3 +2,4 @@
 .vs/*
 #binary files
 WeatherForecast/bin/*
+WeatherForecast/obj/*

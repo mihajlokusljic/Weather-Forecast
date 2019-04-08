@@ -15,7 +15,7 @@
                 <ColumnDefinition Width="1.2*"/>
                 <ColumnDefinition/>
             </Grid.ColumnDefinitions>
-            <Image Source="resources/images/Rain.png" Width="80" Height="80" Margin="10" Grid.Row="0" Grid.Column="0"/>
+            <Image Source="{Binding Path=Weather.CurrentWeatherData.WeatherImage, UpdateSourceTrigger=PropertyChanged }" Width="80" Height="80" Margin="10" Grid.Row="0" Grid.Column="0"/>
             <Label Content="{Binding Path=Weather.CurrentWeatherData.Temperature, UpdateSourceTrigger=PropertyChanged }" Foreground="White" FontSize="48" VerticalAlignment="Bottom" Grid.Row="0" Grid.Column="1"/>
         </Grid>
 

@@ -74,7 +74,7 @@
                     <StackPanel Orientation="Vertical" DockPanel.Dock="Top">
                         <Label Foreground="White" HorizontalAlignment="Center" FontSize="18" Content="{Binding Weather.DayForecasts[0].DayOfWeek, UpdateSourceTrigger=PropertyChanged}"/>
                         <Label Foreground="White" HorizontalAlignment="Center" FontSize="18" Content="{Binding Weather.DayForecasts[0].Date, UpdateSourceTrigger=PropertyChanged}" />
-                        <Image Source="resources/images/Rain.png" Width="100" Height="100"/>
+                        <Image Source="{Binding Weather.DayForecasts[0].WeatherImage, UpdateSourceTrigger=PropertyChanged}" Width="100" Height="100"/>
                         <Label Foreground="White" HorizontalAlignment="Center" FontSize="18" Content="{Binding Weather.DayForecasts[0].Description, UpdateSourceTrigger=PropertyChanged}"/>
                         <Label Foreground="White" FontSize="18" Content="{Binding Weather.DayForecasts[0].MinTemperature, UpdateSourceTrigger=PropertyChanged}" />
                         <Label Foreground="White" FontSize="18" Content="{Binding Weather.DayForecasts[0].MaxTemperature, UpdateSourceTrigger=PropertyChanged}" />
@@ -86,7 +86,7 @@
                     <StackPanel Orientation="Vertical" DockPanel.Dock="Top">
                         <Label Foreground="White" HorizontalAlignment="Center" FontSize="18" Content="{Binding Weather.DayForecasts[1].DayOfWeek, UpdateSourceTrigger=PropertyChanged}"/>
                         <Label Foreground="White" HorizontalAlignment="Center" FontSize="18" Content="{Binding Weather.DayForecasts[1].Date, UpdateSourceTrigger=PropertyChanged}" />
-                        <Image Source="resources/images/Rain.png" Width="100" Height="100"/>
+                        <Image Source="{Binding Weather.DayForecasts[1].WeatherImage, UpdateSourceTrigger=PropertyChanged}" Width="100" Height="100"/>
                         <Label Foreground="White" HorizontalAlignment="Center" FontSize="18" Content="{Binding Weather.DayForecasts[1].Description, UpdateSourceTrigger=PropertyChanged}"/>
                         <Label Foreground="White" FontSize="18" Content="{Binding Weather.DayForecasts[1].MinTemperature, UpdateSourceTrigger=PropertyChanged}" />
                         <Label Foreground="White" FontSize="18" Content="{Binding Weather.DayForecasts[1].MaxTemperature, UpdateSourceTrigger=PropertyChanged}" />
@@ -98,7 +98,7 @@
                     <StackPanel Orientation="Vertical" DockPanel.Dock="Top">
                         <Label Foreground="White" HorizontalAlignment="Center" FontSize="18" Content="{Binding Weather.DayForecasts[2].DayOfWeek, UpdateSourceTrigger=PropertyChanged}"/>
                         <Label Foreground="White" HorizontalAlignment="Center" FontSize="18" Content="{Binding Weather.DayForecasts[2].Date, UpdateSourceTrigger=PropertyChanged}" />
-                        <Image Source="resources/images/Rain.png" Width="100" Height="100"/>
+                        <Image Source="{Binding Weather.DayForecasts[2].WeatherImage, UpdateSourceTrigger=PropertyChanged}" Width="100" Height="100"/>
                         <Label Foreground="White" HorizontalAlignment="Center" FontSize="18" Content="{Binding Weather.DayForecasts[2].Description, UpdateSourceTrigger=PropertyChanged}"/>
                         <Label Foreground="White" FontSize="18" Content="{Binding Weather.DayForecasts[2].MinTemperature, UpdateSourceTrigger=PropertyChanged}" />
                         <Label Foreground="White" FontSize="18" Content="{Binding Weather.DayForecasts[2].MaxTemperature, UpdateSourceTrigger=PropertyChanged}" />
@@ -110,7 +110,7 @@
                     <StackPanel Orientation="Vertical" DockPanel.Dock="Top">
                         <Label Foreground="White" HorizontalAlignment="Center" FontSize="18" Content="{Binding Weather.DayForecasts[3].DayOfWeek, UpdateSourceTrigger=PropertyChanged}"/>
                         <Label Foreground="White" HorizontalAlignment="Center" FontSize="18" Content="{Binding Weather.DayForecasts[3].Date, UpdateSourceTrigger=PropertyChanged}" />
-                        <Image Source="resources/images/Rain.png" Width="100" Height="100"/>
+                        <Image Source="{Binding Weather.DayForecasts[3].WeatherImage, UpdateSourceTrigger=PropertyChanged}" Width="100" Height="100"/>
                         <Label Foreground="White" HorizontalAlignment="Center" FontSize="18" Content="{Binding Weather.DayForecasts[3].Description, UpdateSourceTrigger=PropertyChanged}"/>
                         <Label Foreground="White" FontSize="18" Content="{Binding Weather.DayForecasts[3].MinTemperature, UpdateSourceTrigger=PropertyChanged}" />
                         <Label Foreground="White" FontSize="18" Content="{Binding Weather.DayForecasts[3].MaxTemperature, UpdateSourceTrigger=PropertyChanged}" />
@@ -122,7 +122,7 @@
                     <StackPanel Orientation="Vertical" DockPanel.Dock="Top">
                         <Label Foreground="White" HorizontalAlignment="Center" FontSize="18" Content="{Binding Weather.DayForecasts[4].DayOfWeek, UpdateSourceTrigger=PropertyChanged}"/>
                         <Label Foreground="White" HorizontalAlignment="Center" FontSize="18" Content="{Binding Weather.DayForecasts[4].Date, UpdateSourceTrigger=PropertyChanged}" />
-                        <Image Source="resources/images/Rain.png" Width="100" Height="100"/>
+                        <Image Source="{Binding Weather.DayForecasts[4].WeatherImage, UpdateSourceTrigger=PropertyChanged}" Width="100" Height="100"/>
                         <Label Foreground="White" HorizontalAlignment="Center" FontSize="18" Content="{Binding Weather.DayForecasts[4].Description, UpdateSourceTrigger=PropertyChanged}"/>
                         <Label Foreground="White" FontSize="18" Content="{Binding Weather.DayForecasts[4].MinTemperature, UpdateSourceTrigger=PropertyChanged}" />
                         <Label Foreground="White" FontSize="18" Content="{Binding Weather.DayForecasts[4].MaxTemperature, UpdateSourceTrigger=PropertyChanged}" />

@@ -135,5 +135,14 @@
   <ItemGroup>
     <Resource Include="resources\images\bookmarkedIcon.png" />
   </ItemGroup>
+  <ItemGroup>
+    <Resource Include="resources\images\clear.png" />
+    <Resource Include="resources\images\clouds.png" />
+    <Resource Include="resources\images\drizzle.png" />
+    <Resource Include="resources\images\misty.png" />
+    <Resource Include="resources\images\snow.png" />
+    <Resource Include="resources\images\thunderstorm.png" />
+    <Resource Include="resources\images\tornado.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

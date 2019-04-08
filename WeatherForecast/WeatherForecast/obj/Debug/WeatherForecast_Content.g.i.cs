@@ -8,6 +8,12 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("resources/images/bookmarkedicon.png")]
+[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("resources/images/clear.png")]
+[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("resources/images/clouds.png")]
+[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("resources/images/drizzle.png")]
+[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("resources/images/misty.png")]
+[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("resources/images/snow.png")]
+[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("resources/images/thunderstorm.png")]
+[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("resources/images/tornado.png")]
 
 

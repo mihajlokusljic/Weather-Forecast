@@ -9,6 +9,46 @@ namespace WeatherForecast.model
 
     public class ViewData
     {
+
+        public CurrentWeather CurrentWeatherData { get; set; }
+        public List<DayForecast> DayForecasts { get; set; }
+
+        public static string getIconPath(WeatherType weather)
+        {
+            string weatherType = weather.main;
+            if(weatherType == "Thunderstorm")
+            {
+                return "resources/images/thunderstorm.png";
+            }
+            else if(weatherType == "Drizzle")
+            {
+                return "resources/images/drizzle.png";
+            }
+            else if (weatherType == "Rain")
+            {
+                return "resources/images/Rain.png";
+            }
+            else if (weatherType == "Snow")
+            {
+                return "resources/images/snow.png";
+            }
+            else if (weatherType == "Clear")
+            {
+                return "resources/images/clear.png";
+            }
+            else if (weatherType == "Clouds")
+            {
+                return "resources/images/clouds.png";
+            }
+            else if (weatherType == "Tornado")
+            {
+                return "resources/images/tornado.png";
+            }
+            else
+            {
+                return "resources/images/misty.png";
+            }
+        }
         public void AdaptAPI(WeatherData Weather)
         {
             this.CurrentWeatherData = new CurrentWeather();
@@ -17,42 +57,18 @@ namespace WeatherForecast.model
             this.CurrentWeatherData.Bookmarked = false; //dopuniti
             this.CurrentWeatherData.BookmarkImage = ""; //dopuniti
             this.CurrentWeatherData.Description = "Currently: " + Weather.list[0].weather[0].description;
-            this.CurrentWeatherData.WeatherImage = ""; //dopuniti
+            this.CurrentWeatherData.WeatherImage = getIconPath(Weather.list[0].weather[0]);
             this.CurrentWeatherData.Temperature = Math.Round(Weather.list[0].main.temp) + " °C";
 
             this.DayForecasts = new List<DayForecast>();
-            /*
-            for (int i = 0; i < 5; i++)
-            {
-                DayForecast DayForecastConcrete = new DayForecast();
-                DayForecastConcrete.WeatherMeasurements = new List<ViewWeatherMeasurement>();
-                for (int j=0; j < 8; j++)
-                {
-                    ViewWeatherMeasurement ViewWeatherMeasurementConcrete = new ViewWeatherMeasurement();
-                    DayForecastConcrete.WeatherMeasurements.Add(ViewWeatherMeasurementConcrete);
-                }
-                this.DayForecasts.Add(DayForecastConcrete);
-            }
-
-            for (int i = 0; i < 5; i++)
-            {
-                if ( i == 0)
-                {
-
-                }
-                else
-                {
-
-                }
-            }
-            */
             
             DateTime currentDate = DateTime.Now;
             DayForecast firstDay = new DayForecast() {
                 Date = currentDate.ToString("MM/dd/yyyy"),
                 DayOfWeek = currentDate.ToString("ddd"),
                 WeatherMeasurements = new List<ViewWeatherMeasurement>(),
-                Description = Weather.list[0].weather[0].description
+                Description = Weather.list[0].weather[0].description,
+                WeatherImage = getIconPath(Weather.list[0].weather[0])
             };
             this.DayForecasts.Add(firstDay);
             DayForecast currentDay = null;
@@ -77,7 +93,11 @@ namespace WeatherForecast.model
                 {
                     //naisli smo na mjerenje za slijedeci dan
                     currentDate = measurement.dt_txt;
-                    currentDay = new DayForecast() { Date = currentDate.ToString("MM/dd/yyyy"), DayOfWeek = currentDate.ToString("ddd"), WeatherMeasurements = new List<ViewWeatherMeasurement>()};
+                    currentDay = new DayForecast() {
+                        Date = currentDate.ToString("MM/dd/yyyy"),
+                        DayOfWeek = currentDate.ToString("ddd"),
+                        WeatherMeasurements = new List<ViewWeatherMeasurement>()
+                    };
                     currentDay.WeatherMeasurements = new List<ViewWeatherMeasurement>();
                     this.DayForecasts.Add(currentDay);
                 }
@@ -87,6 +107,7 @@ namespace WeatherForecast.model
                     if (currentDay.WeatherMeasurements.Count == 5)
                     {
                         currentDay.Description = measurement.weather[0].description;
+                        currentDay.WeatherImage = getIconPath(measurement.weather[0]);
                     }
                 }
             }
@@ -109,13 +130,11 @@ namespace WeatherForecast.model
                 }
                 df.MinTemperature = "Min temp: " + Math.Round(minTemp) + " °C";
                 df.MaxTemperature = "Max temp: " + Math.Round(maxTemp) + " °C";
-                
 
             }
         }
 
-        public CurrentWeather CurrentWeatherData { get; set; }
-        public List<DayForecast> DayForecasts { get; set; }
+        
     }
 
     public class ViewWeatherMeasurement
