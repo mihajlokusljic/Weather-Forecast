@@ -119,6 +119,7 @@
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
     </None>
     <None Include="resources\city_list.json" />
+    <None Include="resources\favourites.json" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
@@ -143,6 +144,10 @@
     <Resource Include="resources\images\snow.png" />
     <Resource Include="resources\images\thunderstorm.png" />
     <Resource Include="resources\images\tornado.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="resources\images\checkstar_hover.png" />
+    <Resource Include="resources\images\checkstar_on.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

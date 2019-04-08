@@ -12,6 +12,8 @@
         <Image x:Key="historyIcon" Source="resources/images/searchHistory.png"/>
         <Image x:Key="refreshIcon" Source="resources/images/refreshIcon.png"/>
         <Image x:Key="bookmarkedIcon" Source="resources/images/bookmarkedIcon.png"/>
+        <Image x:Key="favouriteOnIcon" Source="resources/images/checkstar_on.png" />
+        <Image x:Key="favouriteOffIcon" Source="resources/images/checkstar_hover.png" />
         <DataTemplate x:Key="AutoCompleteBoxItemTemplate">
             <StackPanel Orientation="Horizontal">
                 <Label Content="{Binding name}"
@@ -49,11 +51,14 @@
 
         <Button Grid.Row="0" Grid.Column="1" Width="40" Height="40" Margin="5" HorizontalAlignment="Left" Content="{StaticResource refreshIcon}" Background="Transparent" BorderBrush="Transparent" ToolTip="Refresh data"/>
         <StackPanel Grid.Row="0" Grid.Column="2" Orientation="Horizontal" HorizontalAlignment="Right">
-            <Button Width="40" Height="40" Margin="3" Content="{StaticResource bookmarkedIcon}" Background="Transparent" BorderBrush="Transparent" ToolTip="Browse bookmarked locations"/>
+            <Button Width="40" Height="40" Margin="3" Content="{StaticResource bookmarkedIcon}" Background="Transparent" BorderBrush="Transparent" ToolTip="Browse bookmarked locations" Click="Favourites_Click"/>
             <Button Grid.Row="0" Grid.Column="2" Width="40" Height="40" Margin="3" Content="{StaticResource historyIcon}" Background="Transparent" BorderBrush="Transparent" ToolTip="Browse search history" Click="History_Click"/>
 
         </StackPanel>
         <ListBox Grid.Row ="1" Grid.Column="2" Visibility="Collapsed" Foreground="White" Background="#FF1A273D" x:Name="listbox" Width="200" Height="Auto" ItemsSource="{Binding HistoryList}" 
+                 SelectedItem ="{Binding SelectedCity}" DisplayMemberPath="name" HorizontalAlignment="Right" SelectionChanged="selectChangedSearch">
+        </ListBox>
+        <ListBox Grid.Row ="1" Grid.Column="2" Visibility="Collapsed" Foreground="White" Background="#FF1A273D" x:Name="listboxFav" Width="200" Height="Auto" ItemsSource="{Binding FavouriteCities}" 
                  SelectedItem ="{Binding SelectedCity}" DisplayMemberPath="name" HorizontalAlignment="Right" SelectionChanged="selectChangedSearch">
         </ListBox>
 
@@ -70,7 +75,8 @@
                     <ColumnDefinition/>
                 </Grid.ColumnDefinitions>
                 <Label Content="{Binding Path=Weather.CurrentWeatherData.CityAndCountry, UpdateSourceTrigger=PropertyChanged}" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" Foreground="White" HorizontalAlignment="Center" FontSize="36"/>
-                <Button Grid.Row="0" Grid.Column="2" Height="40" Width="40">Bkm</Button>
+                <Button Grid.Row="0" Grid.Column="2" Background="Transparent" BorderBrush="Transparent" x:Name="favOn" Content ="{StaticResource favouriteOnIcon}" Height="40" Width="40" Click="Fav_On"></Button>
+                <Button Grid.Row="0" Grid.Column="2" Background="Transparent" BorderBrush="Transparent" x:Name="favOff" Content ="{StaticResource favouriteOffIcon}" Height="40" Width="40" Click="Fav_Off"></Button>
                 <Image Source="{Binding Path=Weather.CurrentWeatherData.WeatherImage, UpdateSourceTrigger=PropertyChanged }" Width="90" Height="90" Margin="10" Grid.Row="1" Grid.Column="0"/>
                 <Label Content="{Binding Path=Weather.CurrentWeatherData.Temperature, UpdateSourceTrigger=PropertyChanged }" Foreground="White" FontSize="48" VerticalAlignment="Center" Grid.Row="1" Grid.Column="1"/>
                 <Label Content="{Binding Path=Weather.CurrentWeatherData.Description, UpdateSourceTrigger=PropertyChanged }" Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2" Foreground="White" HorizontalAlignment="Center" FontSize="20"/>

@@ -41,7 +41,7 @@ namespace WeatherForecast {
     public partial class MainWindow : System.Windows.Window, System.Windows.Markup.IComponentConnector {
         
         
-        #line 47 "..\..\MainWindow.xaml"
+        #line 49 "..\..\MainWindow.xaml"
         [System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1823:AvoidUnusedPrivateFields")]
         internal System.Windows.Controls.AutoCompleteBox Search;
         
@@ -49,7 +49,7 @@ namespace WeatherForecast {
         #line hidden
         
         
-        #line 56 "..\..\MainWindow.xaml"
+        #line 58 "..\..\MainWindow.xaml"
         [System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1823:AvoidUnusedPrivateFields")]
         internal System.Windows.Controls.ListBox listbox;
         
@@ -60,6 +60,9 @@ namespace WeatherForecast {
         #line 83 "..\..\MainWindow.xaml"
         [System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1823:AvoidUnusedPrivateFields")]
         internal System.Windows.Controls.Grid fiveDayForecast;
+        #line 61 "..\..\MainWindow.xaml"
+        [System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1823:AvoidUnusedPrivateFields")]
+        internal System.Windows.Controls.ListBox listboxFav;
         
         #line default
         #line hidden
@@ -68,6 +71,9 @@ namespace WeatherForecast {
         #line 104 "..\..\MainWindow.xaml"
         [System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1823:AvoidUnusedPrivateFields")]
         internal System.Windows.Controls.Button day1ForecastBtn;
+        #line 78 "..\..\MainWindow.xaml"
+        [System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1823:AvoidUnusedPrivateFields")]
+        internal System.Windows.Controls.Button favOn;
         
         #line default
         #line hidden
@@ -76,6 +82,9 @@ namespace WeatherForecast {
         #line 160 "..\..\MainWindow.xaml"
         [System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1823:AvoidUnusedPrivateFields")]
         internal System.Windows.Controls.DockPanel singleDayForecast;
+        #line 79 "..\..\MainWindow.xaml"
+        [System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1823:AvoidUnusedPrivateFields")]
+        internal System.Windows.Controls.Button favOff;
         
         #line default
         #line hidden
@@ -113,13 +122,13 @@ namespace WeatherForecast {
             case 1:
             this.Search = ((System.Windows.Controls.AutoCompleteBox)(target));
             
-            #line 47 "..\..\MainWindow.xaml"
+            #line 49 "..\..\MainWindow.xaml"
             this.Search.KeyUp += new System.Windows.Input.KeyEventHandler(this.keyUpSearch);
             
             #line default
             #line hidden
             
-            #line 47 "..\..\MainWindow.xaml"
+            #line 49 "..\..\MainWindow.xaml"
             this.Search.SelectionChanged += new System.Windows.Controls.SelectionChangedEventHandler(this.selectChangedSearch);
             
             #line default
@@ -127,16 +136,24 @@ namespace WeatherForecast {
             return;
             case 2:
             
-            #line 53 "..\..\MainWindow.xaml"
-            ((System.Windows.Controls.Button)(target)).Click += new System.Windows.RoutedEventHandler(this.History_Click);
+            #line 54 "..\..\MainWindow.xaml"
+            ((System.Windows.Controls.Button)(target)).Click += new System.Windows.RoutedEventHandler(this.Favourites_Click);
             
             #line default
             #line hidden
             return;
             case 3:
+            
+            #line 55 "..\..\MainWindow.xaml"
+            ((System.Windows.Controls.Button)(target)).Click += new System.Windows.RoutedEventHandler(this.History_Click);
+            
+            #line default
+            #line hidden
+            return;
+            case 4:
             this.listbox = ((System.Windows.Controls.ListBox)(target));
             
-            #line 57 "..\..\MainWindow.xaml"
+            #line 59 "..\..\MainWindow.xaml"
             this.listbox.SelectionChanged += new System.Windows.Controls.SelectionChangedEventHandler(this.selectChangedSearch);
             
             #line default
@@ -150,6 +167,11 @@ namespace WeatherForecast {
             
             #line 104 "..\..\MainWindow.xaml"
             this.day1ForecastBtn.Click += new System.Windows.RoutedEventHandler(this.firstDayForecast);
+            case 5:
+            this.listboxFav = ((System.Windows.Controls.ListBox)(target));
+            
+            #line 62 "..\..\MainWindow.xaml"
+            this.listboxFav.SelectionChanged += new System.Windows.Controls.SelectionChangedEventHandler(this.selectChangedSearch);
             
             #line default
             #line hidden
@@ -158,6 +180,10 @@ namespace WeatherForecast {
             
             #line 116 "..\..\MainWindow.xaml"
             ((System.Windows.Controls.Button)(target)).Click += new System.Windows.RoutedEventHandler(this.secondDayForecast);
+            this.favOn = ((System.Windows.Controls.Button)(target));
+            
+            #line 78 "..\..\MainWindow.xaml"
+            this.favOn.Click += new System.Windows.RoutedEventHandler(this.Fav_On);
             
             #line default
             #line hidden
@@ -193,6 +219,10 @@ namespace WeatherForecast {
             
             #line 170 "..\..\MainWindow.xaml"
             ((System.Windows.Controls.Button)(target)).Click += new System.Windows.RoutedEventHandler(this.exitDetailView);
+            this.favOff = ((System.Windows.Controls.Button)(target));
+            
+            #line 79 "..\..\MainWindow.xaml"
+            this.favOff.Click += new System.Windows.RoutedEventHandler(this.Fav_Off);
             
             #line default
             #line hidden
