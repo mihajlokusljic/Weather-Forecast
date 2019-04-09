@@ -146,8 +146,12 @@
     <Resource Include="resources\images\tornado.png" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="resources\images\checkstar_hover.png" />
-    <Resource Include="resources\images\checkstar_on.png" />
+    <Resource Include="resources\images\backIcon.png" />
+    <Resource Include="resources\images\isBookmarkedIcon.png" />
+    <Resource Include="resources\images\isNotBookmarkedIcon.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="resources\images\weatherIcon.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

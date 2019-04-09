@@ -7,14 +7,18 @@
         xmlns:local="clr-namespace:WeatherForecast"
         xmlns:toolkit="clr-namespace:System.Windows.Controls;assembly=System.Windows.Controls.Input.Toolkit"
         mc:Ignorable="d"
-        Title="Weather Forecast" Height="550" Width="900" WindowStartupLocation="CenterScreen" Background="#FF1A273D" MinWidth="365" MinHeight="270" Closing="OnWindowClosing">
+        Title="Weather Forecast" Height="550" Width="900"
+        WindowStartupLocation="CenterScreen" Background="#FF1A273D"
+        MinWidth="365" MinHeight="270" Icon="resources/images/weatherIcon.png"
+        Closing="OnWindowClosing">
 
     <Window.Resources>
         <Image x:Key="historyIcon" Source="resources/images/searchHistory.png"/>
         <Image x:Key="refreshIcon" Source="resources/images/refreshIcon.png"/>
         <Image x:Key="bookmarkedIcon" Source="resources/images/bookmarkedIcon.png"/>
-        <Image x:Key="favouriteOnIcon" Source="resources/images/checkstar_on.png" />
-        <Image x:Key="favouriteOffIcon" Source="resources/images/checkstar_hover.png" />
+        <Image x:Key="favouriteOnIcon" Source="resources/images/isBookmarkedIcon.png" />
+        <Image x:Key="favouriteOffIcon" Source="resources/images/isNotBookmarkedIcon.png" />
+        <Image x:Key="backIcon" Source="resources/images/backIcon.png" />
         <DataTemplate x:Key="AutoCompleteBoxItemTemplate">
             <StackPanel Orientation="Horizontal">
                 <Label Content="{Binding name}"
@@ -41,6 +45,8 @@
 
         <toolkit:AutoCompleteBox
             Grid.Row="0" Grid.Column="0"
+            Margin="5"
+            ToolTip="Search locations"
             ItemsSource="{Binding Cities}"
             SelectedItem="{Binding SelectedCity, Mode=TwoWay}" 
             ValueMemberPath="name"
@@ -48,6 +54,7 @@
             VerticalAlignment="Center"
             Foreground="White"
             Background="#FF1A273D"
+            BorderBrush="White"
             ItemFilter="{Binding CityFilter}"
             ItemTemplate="{StaticResource AutoCompleteBoxItemTemplate}"
             x:Name="Search" KeyUp="keyUpSearch" SelectionChanged="selectChangedSearch"
@@ -179,11 +186,11 @@
                     </TransformGroup>
                 </DockPanel.RenderTransform>
                 <StackPanel DockPanel.Dock="Top" Orientation="Horizontal">
-                    <Button DockPanel.Dock="Top" Click="exitDetailView">Back</Button>
-                    <Label DockPanel.Dock="Top" FontSize="24" Foreground="White">Back to 5 day forecast</Label>
+                    <Button DockPanel.Dock="Top" Content="{StaticResource backIcon}" Background="Transparent" BorderBrush="Transparent" Click="exitDetailView" Width="80" Height="80" Margin="0"/>
+                    <Label DockPanel.Dock="Top" FontSize="36" Foreground="White" VerticalAlignment="Center">Back to 5 day forecast</Label>
                 </StackPanel>
 
-                <Grid DockPanel.Dock="Bottom" Margin="0, 30, 0 0">
+                <Grid DockPanel.Dock="Bottom" Margin="0, 10, 0 0">
                     <Grid.RowDefinitions>
                         <RowDefinition/>
                     </Grid.RowDefinitions>
