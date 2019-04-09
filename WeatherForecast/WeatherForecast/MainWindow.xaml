@@ -72,12 +72,12 @@
             <Button Width="40" Height="40" Margin="3" Content="{StaticResource historyIcon}" Background="Transparent" BorderBrush="Transparent" ToolTip="Show/Hide search history" Click="History_Click"/>
         </StackPanel>
 
-        <ListBox Visibility="Collapsed" FontSize="20" Foreground="White" Background="#FF1A273D" x:Name="listbox" Width="200" Height="Auto" ItemsSource="{Binding HistoryList}" 
-                 SelectedItem ="{Binding SelectedCity}" DisplayMemberPath="name" HorizontalAlignment="Right" SelectionChanged="selectChangedSearch" Margin="0,0.4,-0.4,0.4">
+        <ListBox Grid.Row ="1" Grid.Column="2" Visibility="Collapsed" FontSize="20" Foreground="White" Background="#FF1A273D" x:Name="listbox" Width="200" Height="Auto" ItemsSource="{Binding HistoryList}" 
+                 SelectedItem ="{Binding SelectedCity, Mode = TwoWay}"  DisplayMemberPath="name" HorizontalAlignment="Right" SelectionChanged="selectChangedSearch" Margin="0,0.4,-0.4,0.4">
         </ListBox>
         
         <ListBox Grid.Row ="1" Grid.Column="2" Visibility="Collapsed" FontSize="20" Foreground="White" Background="#FF1A273D" x:Name="listboxFav" Width="200" Height="Auto" ItemsSource="{Binding FavouriteCities}" 
-                 SelectedItem ="{Binding SelectedCity}" DisplayMemberPath="name" HorizontalAlignment="Right" SelectionChanged="selectChangedSearch" Margin="0,0.4,-0.4,0.4">
+                 SelectedItem ="{Binding SelectedCity, Mode = TwoWay}" DisplayMemberPath="name" HorizontalAlignment="Right" SelectionChanged="selectChangedSearch" Margin="0,0.4,-0.4,0.4">
         </ListBox>
 
         <!--Current weather-->

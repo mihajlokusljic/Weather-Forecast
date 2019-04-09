@@ -30,7 +30,7 @@ namespace WeatherForecast
     {
         WeatherDataLoader loader = new WeatherDataLoader();
         private Thread refresher = new Thread(new ParameterizedThreadStart(autoRefresh));
-
+        
         public void keyUpSearch(object sender, KeyEventArgs e)
         {
             loader.setCounterToZero();
@@ -215,10 +215,10 @@ namespace WeatherForecast
             {
                 loader.refreshWeatherData(loader.SelectedCity.id.ToString());
                 loader.OnPropertyChanged("Weather");
+                DateTime dt = DateTime.Now;
+                loader.RefreshMessage = "Last time updated: " + dt.ToString();
             }            
-
-            DateTime dt = DateTime.Now;
-            loader.RefreshMessage = "Last time updated: " + dt.ToString();
+           
         }
 
         public static void autoRefresh(Object obj)
