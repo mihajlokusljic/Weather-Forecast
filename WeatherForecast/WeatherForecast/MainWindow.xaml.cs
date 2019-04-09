@@ -237,5 +237,12 @@ namespace WeatherForecast
           
         }
 
+        private void OnWindowClosing(object sender, CancelEventArgs e)
+        {
+            if (refresher.IsAlive)
+            {
+                refresher.Abort();
+            }
+        }
     }
 }
